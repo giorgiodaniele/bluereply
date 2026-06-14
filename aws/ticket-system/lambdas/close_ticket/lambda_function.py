@@ -10,8 +10,14 @@ table    = dynamodb.Table("tickets")
 def lambda_handler(event, context):
 
     response = table.scan(FilterExpression=Attr("status").eq("OPEN"))
+    items    = response["Items"]
 
-    for item in response["Items"]:
+    print(f"found {len(items)} OPEN tickets")
+
+    for item in items:
+
+        print(f"closing ticket {item['id']}")
+
         table.update_item(
             Key={
                 "id": item["id"]
@@ -29,6 +35,6 @@ def lambda_handler(event, context):
         "statusCode": 200,
         "body"      : json.dumps({
             "message": "Tickets closed...",
-            "closed" : len(response["Items"])
+            "closed" : len(items)
         })
     }
