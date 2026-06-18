@@ -1,0 +1,25 @@
+
+services:
+
+  jenkins:
+    image:          jenkins/jenkins:lts
+    container_name: jenkins
+    restart:        unless-stopped
+    ports:
+      - "9090:8080"
+      - "50000:50000"
+    volumes:
+      - jekins_data:/var/jenkins_home
+
+  dependency-track:
+    image:          dependencytrack/bundled:latest
+    container_name: dependency-track
+    restart:        unless-stopped
+    ports:
+      - "8081:8080"
+    volumes:
+      - dtrack_data:/data
+
+volumes:
+  jekins_data:
+  dtrack_data:
