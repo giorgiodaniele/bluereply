@@ -11,14 +11,14 @@ services:
     volumes:
       - jekins_data:/var/jenkins_home
 
-  dependency-track:
-    image:          dependencytrack/bundled:latest
-    container_name: dependency-track
-    restart:        unless-stopped
-    ports:
-      - "8081:8080"
-    volumes:
-      - dtrack_data:/data
+#   dependency-track:
+#     image:          dependencytrack/bundled:latest
+#     container_name: dependency-track
+#     restart:        unless-stopped
+#     ports:
+#       - "8081:8080"
+#     volumes:
+#       - dtrack_data:/data
 
 volumes:
   jekins_data:

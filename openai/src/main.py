@@ -1,140 +1,154 @@
+from collections import defaultdict
+import time
+import dotenv
 import os
-import logging
-import pandas as pd
+import csv
+import pandas
 
-from utils import *
-from apis.usage_api  import *
-from apis.key_api    import *
-from apis.cost_api   import *
-from cloud.aws       import *
+from datetime           import datetime, timedelta
+from openai             import OpenAI
+from focus              import *
+from concurrent.futures import ThreadPoolExecutor
 
-#
-# Logger setting
-#
-logging.basicConfig(
-    level=logging.INFO,
-    format="%(asctime)s | %(levelname)s | %(name)s | %(filename)s:%(lineno)d | %(message)s",
-    datefmt="%Y-%m-%d %H:%M:%S",
-    handlers=[
-        logging.StreamHandler(),
-        # logging.FileHandler("app.log", encoding="utf-8")
-    ]
-)
+dotenv.load_dotenv()
 
-logger = logging.getLogger(__name__)
+OPENAI_ORGANIZATION_NAME = os.getenv("OPENAI_ORGANIZATION_NAME")
+OPENAI_ORGANIZATION_ID   = os.getenv("OPENAI_ORGANIZATION_ID")
+OPENAI_SECRET_KEY        = os.getenv("OPENAI_SECRET_KEY")
 
 
-#
-# Global variables
-#
-OPENAI_ORG_ID   = os.getenv("OPENAI_ORGANIZATION_ID")
-OPENAI_ORG_NAME = os.getenv("OPENAI_ORGANIZATION_NAME")
+def span():
+
+    today = datetime.now()
+
+    # First day of current month
+    fdthm = today.replace(day=1, hour=0, minute=0, second=0, microsecond=0)
+
+    # Last day and first day of last month
+    ldlm = fdthm - timedelta(seconds=1)
+    fdlm = ldlm.replace(day=1, hour=0, minute=0, second=0, microsecond=0)
+
+    return int(fdlm.timestamp()), int(ldlm.timestamp())
+
+ts, te  = span()
 
 
-def save_csv(data, filename, output_dir):
-    dataframe = pd.DataFrame(data)
-    file_path = os.path.join(output_dir, filename)
 
-    dataframe.to_csv(file_path, index=False)
+def get_projs():
+    client  = OpenAI(admin_api_key=OPENAI_SECRET_KEY, organization=OPENAI_ORGANIZATION_ID)
+    records = list(client.admin.organization.projects.list())
+    rows    = []
 
-    logger.info(f"File CSV salvato | path={file_path} | righe={len(dataframe)}")
+    for project in records:
+        rows.append(project.model_dump())
 
-    return dataframe
+    if rows:
+        fieldnames = sorted({k for row in rows for k in row})
+        with open("out/projects.csv", "w", newline="", encoding="utf-8") as f:
+            writer = csv.DictWriter(f, fieldnames=fieldnames)
+            writer.writeheader()
+            writer.writerows(rows)
+
+    print(f"Exports {len(records)} records about projects")
+
+    return records
+
+def get_costs():
+    client  = OpenAI(admin_api_key=OPENAI_SECRET_KEY, organization=OPENAI_ORGANIZATION_ID)
+    page    = None
+    buckets = []
+    records = []
+
+    while True:
+        res = client.admin.organization.usage.costs(start_time=ts, end_time=te, bucket_width="1d", group_by=["line_item", "project_id", "api_key_id"], limit=31, page=page)
+        buckets.extend(res.data)
+        if not res.has_more:
+            break
+        page = res.next_page
+
+    for bucket in buckets:
+        for item in bucket.results:
+            records.append([
+                bucket.start_time,      # UNIX timestamp representing when invoices starts
+                bucket.end_time,        # UNIX timestamp representing when invoices finishes
+                item.amount.currency,
+                item.amount.value,
+                item.api_key_id,
+                item.line_item,
+                item.object,
+                item.organization_id,
+                item.project_id,
+                item.quantity,
+            ])
+
+    print(f"Exports {len(records)} records about costs")
+
+    return records
+
+def get_users():
+    client  = OpenAI(admin_api_key=OPENAI_SECRET_KEY, organization=OPENAI_ORGANIZATION_ID)
+    records = list(client.admin.organization.users.list())
+    rows    = [user.model_dump() for user in records]
+
+    if rows:
+        fieldnames = sorted({k for row in rows for k in row})
+        with open("out/users.csv", "w", newline="", encoding="utf-8") as f:
+            writer = csv.DictWriter(f, fieldnames=fieldnames)
+            writer.writeheader()
+            writer.writerows(rows)
+
+    print(f"Exports {len(records)} records about users")
+
+    return records
+
+def get_keys():
+    client  = OpenAI(admin_api_key=OPENAI_SECRET_KEY, organization=OPENAI_ORGANIZATION_ID)
+    records = list(client.admin.organization.admin_api_keys.list())
+    rows    = []
+
+    for key in records:
+        rows.append({
+            "id"                : key.id,
+            "name"              : key.name,
+            "created_at"        : key.created_at,
+            "expires_at"        : key.expires_at,
+            "last_used_at"      : key.last_used_at,
+            "owner_id"          : key.owner.id,
+            "owner_created_at"  : key.owner.created_at,
+            "owner_name"        : key.owner.name,
+            "owner_role"        : key.owner.role,
+            "owner_type"        : key.owner.type,
+        })
+
+    if rows:
+        fieldnames = rows[0].keys()
+
+        with open("out/api_keys.csv", "w", newline="", encoding="utf-8") as f:
+            writer = csv.DictWriter(f, fieldnames=fieldnames)
+            writer.writeheader()
+            writer.writerows(rows)
+
+    print(f"Exports {len(records)} records about API keys")
+
+    return records
 
 
-def main():
-    try:
-        logger.info("Avvio esecuzione script raccolta dati OpenAI")
 
-        #
-        # Define timespan and generate the folder where output
-        # is going to be saved
-        #
-        ts, te = get_time_horizon()
 
-        base_dir   = os.path.dirname(os.path.abspath(__file__))
-        output_dir = os.path.join(base_dir, "..", f"{ts}_{te}")
-        output_dir = os.path.abspath(output_dir)
-
-        os.makedirs(output_dir, exist_ok=True)
-
-        #
-        # Fetch all existing projects
-        #
-        logger.info("Recupero elenco progetti OpenAI")
-        projects = fetch_projects()
-        projects_frame = save_csv(projects, "projects.csv", output_dir)
-
-        #
-        # Fetch all existing keys
-        #
-        logger.info("Recupero chiavi API associate ai progetti")
-        keys = list(fetch_all_project_keys())
-        keys_frame = save_csv(keys, "keys.csv", output_dir)
-
-        #
-        # Fetch costs by project
-        #
-        logger.info("Recupero costi aggregati per progetto")
-        project_costs = fetch_costs_by_project(ts, te)
-        project_costs_frame = save_csv(project_costs, "project_cost.csv", output_dir)
-
-        #
-        # Fetch costs by user
-        #
-        logger.info("Recupero costi aggregati per utente")
-        user_costs = fetch_costs_by_user(ts, te)
-        user_costs_frame = save_csv(user_costs, "user_cost.csv", output_dir)
-
-        #
-        # Filtro utenti validi (con chiave associata)
-        #
-        valid_user_ids        = {record["user_id"] for record in keys if record.get("user_id")}
-        filtered_user_cost_df = user_costs_frame[user_costs_frame["user_id"].isin(valid_user_ids)]
-
-        #
-        # Generazione dataset FOCUS
-        #
-        logger.info("Generazione dataset FOCUS in corso")
-
-        focus_frame = generate_focus(
-            frame=filtered_user_cost_df,
-            start_time=ts,
-            end_time=te,
-            project_id=None,
-            project_name=None,
-            organization_id=OPENAI_ORG_ID,
-            organization_name=OPENAI_ORG_NAME
-        )
-
-        focus_file_path = os.path.join(output_dir, "focus.csv")
-        focus_frame.to_csv(focus_file_path, index=False)
-
-        logger.info(f"File FOCUS generato | path={focus_file_path} | righe={len(focus_frame)}")
-        logger.info(f"Range temporale dataset FOCUS | min={focus_frame['BillingPeriodStart'].min()} | max={focus_frame['BillingPeriodEnd'].max()}")
-
-        #
-        # Upload verso S3
-        #
-        aws_upload(focus_file_path)
-
-        logger.info("Upload dataset FOCUS verso S3 completato")
-
-        #
-        # (Opzionale) Usage API
-        #
-        # save_csv(fetch_usage_completions(ts, te),          "usage_completions.csv", output_dir)
-        # save_csv(fetch_usage_embeddings(ts, te),           "usage_embeddings.csv", output_dir)
-        # save_csv(fetch_usage_images(ts, te),               "usage_images.csv", output_dir)
-        # save_csv(fetch_usage_audio_speech(ts, te),         "usage_audio_speech.csv", output_dir)
-        # save_csv(fetch_usage_audio_transcriptions(ts, te), "usage_audio_transcriptions.csv", output_dir)
-
-        logger.info("Esecuzione script completata con successo")
-
-    except Exception:
-        logger.exception("Errore durante l'esecuzione dello script principale")
-        raise
 
 
 if __name__ == "__main__":
-    main()
+    started = time.perf_counter()
+
+    with ThreadPoolExecutor(max_workers=8) as executor:
+        futures = [
+            executor.submit(get_projs),
+            executor.submit(get_costs),
+            executor.submit(get_users),
+            executor.submit(get_keys),
+        ]
+
+        for future in futures:
+            future.result()
+
+    print(f"Completed in {time.perf_counter() - started:.2f} seconds")

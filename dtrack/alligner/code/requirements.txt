@@ -1,3 +1,0 @@
-owasp-dependency-track-client
-dotenv
-requests

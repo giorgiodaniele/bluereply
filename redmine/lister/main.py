@@ -126,25 +126,29 @@ def extract_custom_fields(issue) -> Dict:
 
     return result
 
-def process_issue(issue):
+def strip_jenkins_url(value, group):
+    if isinstance(value, str):
+        return value.replace(f"http://172.16.63.239/jenkins/job/{group}/job/", "")
+    return value
 
+def process_issue(issue):
     fields = extract_custom_fields(issue)
+    group  = fields.get(APPLICATION_GROUP)
     return {
         "ISSUE_ID"                : issue.id,
         "CREATED_ON"              : issue.created_on,
         "JENKINS_PIPELINE"        : fields.get(JENKINS_JOB_TO_CREATE),
-        "TEAM"                    : fields.get(APPLICATION_GROUP),
+        "TEAM"                    : group,
         "LAYER"                   : fields.get(APPLICATION_LAYER),
         "COMPONENT"               : fields.get(APPLICATION_NAME),
         "APPLICATION_CODE"        : fields.get(APPLICATION_CODE),
-        "JENKINS_PIPELINE_DEVELOP": fields.get(URL_JENKINS_JOB_DEVELOP),
-        "JENKINS_PIPELINE_MASTER" : fields.get(URL_JENKINS_JOB_MASTER),
-        "JENKINS_PIPELINE_RELEASE": fields.get(URL_JENKINS_JOB_RELEASE),
+        "JENKINS_PIPELINE_DEVELOP": strip_jenkins_url(fields.get(URL_JENKINS_JOB_DEVELOP), group),
+        "JENKINS_PIPELINE_MASTER" : strip_jenkins_url(fields.get(URL_JENKINS_JOB_MASTER),  group),
+        "JENKINS_PIPELINE_RELEASE": strip_jenkins_url(fields.get(URL_JENKINS_JOB_RELEASE), group),
         "JENKINS_PIPELINE_IT"     : fields.get(URL_JENKINS_JOB_IT),
         "JENKINS_PIPELINE_LAB"    : fields.get(URL_JENKINS_JOB_LAB),
         "JENKINS_PIPELINE_MAIN"   : fields.get(URL_JENKINS_JOB_MAIN),
     }
-
 #
 # CSV writer
 #
@@ -193,7 +197,7 @@ def main():
         if not os.path.exists(output_dir):
             os.makedirs(output_dir)
         timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
-        file_path = os.path.join(output_dir, f"output_{timestamp}.csv")
+        file_path = os.path.join(output_dir, f"tickets_{timestamp}.csv")
 
         # #
         # # Remove all records which do not contain any pipeline

@@ -1,23 +1,12 @@
 from   datetime import datetime, timezone
 import pandas
 
-
-def get_time_horizon():
-    now = datetime.now(timezone.utc)
-    start = now.replace(day=1, hour=0, minute=0, second=0, microsecond=0)
-    end = now
-    return int(start.timestamp()), int(end.timestamp())
-
-
-# 
-# FOCUS FORMAT 1.0
-# 
 FOCUS_SCHEMA_1_0 = [
-    "AvailabilityZone",            # Recommended | Dimension | String | nullable
+    "AvailabilityZone",            # Recommended | Dimension | String  | nullable
     "BilledCost",                  # Mandatory   | Metric    | Decimal | NOT NULL
-    "BillingAccountId",            # Mandatory   | Dimension | String | NOT NULL
-    "BillingAccountName",          # Mandatory   | Dimension | String | nullable
-    "BillingCurrency",             # Mandatory   | Dimension | String | NOT NULL (ISO 4217)
+    "BillingAccountId",            # Mandatory   | Dimension | String  | NOT NULL
+    "BillingAccountName",          # Mandatory   | Dimension | String  | nullable
+    "BillingCurrency",             # Mandatory   | Dimension | String  | NOT NULL (ISO 4217)
     "BillingPeriodEnd",            # Mandatory   | Dimension | Date/Time | NOT NULL
     "BillingPeriodStart",          # Mandatory   | Dimension | Date/Time | NOT NULL
     "ChargeCategory",              # Mandatory   | Dimension | String | NOT NULL (allowed values)
@@ -121,8 +110,8 @@ def to_iso8601_utc(epoch_seconds) -> str:
 
 def generate_focus(
     frame: pandas.DataFrame,
-    start_time,
-    end_time,
+    ts,                     # UNIX timestamp when charge period starts
+    te,                     # UNIX timestamp when charge period finishes
     organization_id,
     organization_name,
     project_id,
@@ -143,15 +132,12 @@ def generate_focus(
     # 
     classified = df["_ModelName"].apply(classify_model)
     df["ServiceCategory"] = classified.apply(lambda x: x[0])
-    df["ServiceName"] = classified.apply(lambda x: x[1])
+    df["ServiceName"]     = classified.apply(lambda x: x[1])
 
     # 
     # ChargeDescription: input/output/cached
     # 
-    df["ChargeDescription"] = df.apply(
-        lambda r: build_charge_description(r["_ModelName"], r["_UsageType"]),
-        axis=1,
-    )
+    df["ChargeDescription"] = df.apply(lambda r: build_charge_description(r["_ModelName"], r["_UsageType"]), axis=1)
 
 
     df["ChargeCategory"]  = CHARGE_CATEGORY_USAGE
@@ -179,10 +165,10 @@ def generate_focus(
     # 
     # Format dates
     # 
-    df["BillingPeriodStart"] = to_iso8601_utc(start_time)
-    df["BillingPeriodEnd"]   = to_iso8601_utc(end_time)
-    df["ChargePeriodStart"]  = df["start_time"].apply(to_iso8601_utc)
-    df["ChargePeriodEnd"]    = df["end_time"].apply(to_iso8601_utc)
+    df["BillingPeriodStart"] = to_iso8601_utc(ts)
+    df["BillingPeriodEnd"]   = to_iso8601_utc(te)
+    df["ChargePeriodStart"]  = df["ts"].apply(to_iso8601_utc)
+    df["ChargePeriodEnd"]    = df["te"].apply(to_iso8601_utc)
 
     #
     # Account / Subaccount
@@ -195,7 +181,7 @@ def generate_focus(
     # 
     # CLoud provider is always OpenAI
     # 
-    df["ProviderName"]     = "OpenAI"
+    df["ProviderName"]      = "OpenAI"
     df["PublisherName"]     = "OpenAI"
     df["InvoiceIssuerName"] = "OpenAI"
 
@@ -211,13 +197,13 @@ def generate_focus(
     # 
     if "num_tokens" in df.columns:
         df["ConsumedQuantity"] = df["num_tokens"]
-        df["ConsumedUnit"] = "Tokens"
+        df["ConsumedUnit"]     = "Tokens"
     elif "num_requests" in df.columns:
         df["ConsumedQuantity"] = df["num_requests"]
-        df["ConsumedUnit"] = "Requests"
+        df["ConsumedUnit"]     = "Requests"
     else:
         df["ConsumedQuantity"] = None
-        df["ConsumedUnit"] = None
+        df["ConsumedUnit"]     = None
 
     # 
     # Region / Availability Zone: OpenAI does not have a one
