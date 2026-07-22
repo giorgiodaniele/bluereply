@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 __author__      = "Giorgio Daniele Luppina"
 __version__     = "1.0"
-__description__ = "Generate a CSV containing all pipelines configured @ http://172.16.63.239/jenkins."
+__description__ = ""
 
 import argparse
 import logging
@@ -41,8 +41,7 @@ def generate_record(
     jvms         : bool,
 ):
 
-    scm = scm or {}
-
+    scm        = scm or {}
     scm_url    = scm.get("url")
     scm_path   = scm.get("path")
     scm_branch = scm.get("branch")
@@ -81,10 +80,7 @@ def process_pipeline(
         jdks = get_jdk_info(root)
         jvms = has_jvm_additional_parameters(root)
 
-        LOGGER.info(
-            "Pipeline %s processata con successo!",
-            pipeline_path,
-        )
+        LOGGER.info("Pipeline %s processata con successo!", pipeline_path)
 
         return generate_record(
             folder_name=folder_name,
@@ -96,15 +92,10 @@ def process_pipeline(
         )
 
     except ET.ParseError as e:
-        LOGGER.error("Errore parsing XML job=%s error=%s",
-                     pipeline_path,
-                     e,
-        )
+        LOGGER.error("Errore parsing XML job=%s error=%s", pipeline_path, e)
 
     except Exception:
-        LOGGER.exception("Errore inatteso durante il processing job=%s",
-                         pipeline_path,
-        )
+        LOGGER.exception("Errore inatteso durante il processing job=%s", pipeline_path)
 
     return None
 
@@ -162,10 +153,7 @@ def navigate(
             timeout=120,
         )
 
-        LOGGER.info(
-            "Connessione avvenuta con successo a %s",
-            url,
-        )
+        LOGGER.info("Connessione avvenuta con successo a %s", url)
 
         jobs = server.get_jobs()
 
@@ -175,10 +163,7 @@ def navigate(
             == "com.cloudbees.hudson.plugins.folder.Folder"
         ]
 
-        LOGGER.info(
-            "Cartelle trovate count=%s",
-            len(folders),
-        )
+        LOGGER.info("Cartelle trovate [%s]", len(folders))
 
         with ThreadPoolExecutor(max_workers=MAX_WORKERS) as pool:
             futures = [pool.submit(process_folder, folder, url, username, password) for folder in folders]
@@ -219,9 +204,9 @@ def main():
 
     parser = argparse.ArgumentParser()
 
-    parser.add_argument("--url", required=True)
-    parser.add_argument("--username", required=True)
-    parser.add_argument("--password", required=True)
+    parser.add_argument("--url",       required=True)
+    parser.add_argument("--username",  required=True)
+    parser.add_argument("--password",  required=True)
 
     args = parser.parse_args()
 

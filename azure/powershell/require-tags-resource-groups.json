@@ -1,0 +1,59 @@
+{
+    "if": {
+      "allOf": [
+        {
+          "field": "type",
+          "equals": "Microsoft.Resources/subscriptions/resourceGroups"
+        },
+        {
+          "anyOf": [
+            {
+              "field": "tags['environment']",
+              "exists": "false"
+            },
+            {
+              "field": "tags['environment']",
+              "notIn": [
+                "prod",
+                "demo",
+                "svil"
+              ]
+            },
+            {
+              "field" : "tags['owner']",
+              "exists": "false"
+            },
+            {
+              "field"  : "tags['owner']",
+              "notLike": "*@reply.it"
+            },
+            {
+              "field": "tags['business_unit']",
+              "exists": "false"
+            },
+            {
+            "field": "tags['business_unit']",
+            "notIn": [
+                "BLUTIT_HA",
+                "BLUTIT_IA",
+                "BLUTIT_DAT_MOD",
+                "BLUTITT_AI",
+                "BLUTIT_CA",
+                "BLUTIT_AIF",
+                "BLUTIT_DAT_INS",
+                "BLUTIT_LK",
+                "BLUTIT_AF"
+            ]
+            },
+            {
+              "field": "tags['application']",
+              "exists": "false"
+            }
+          ]
+        }
+      ]
+    },
+    "then": {
+      "effect": "deny"
+    }
+}
