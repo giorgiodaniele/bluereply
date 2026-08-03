@@ -1,0 +1,1977 @@
+apiVersion: v1
+entries:
+  SDV-bpersisbabdg-office-chart:
+  - apiVersion: v2
+    created: 2026-07-28T15:08:06.794867245Z
+    description: A Helm chart to deploy the standalone SISBABDG application
+    digest: 2b5c419b95109a29cb58095b40483beaa3238eff548bd86eb6a33d26a1e07ac1
+    name: SDV-bpersisbabdg-office-chart
+    urls:
+    - local://SDV-bpersisbabdg-office-chart-4.1.20260728160316.tgz
+    type: application
+    appVersion: "4.1.20260728160316"
+    version: "4.1.20260728160316"
+  - apiVersion: v2
+    created: 2026-07-27T14:37:37.160939392Z
+    description: A Helm chart to deploy the standalone SISBABDG application
+    digest: 41701f51879d8392ae42fa84902680b044884bc219aaaea22bbf1c39696583f5
+    name: SDV-bpersisbabdg-office-chart
+    urls:
+    - local://SDV-bpersisbabdg-office-chart-4.1.20260727105236.tgz
+    type: application
+    appVersion: "4.1.20260727105236"
+    version: "4.1.20260727105236"
+  - apiVersion: v2
+    created: 2026-07-23T13:47:24.336738269Z
+    description: A Helm chart to deploy the standalone SISBABDG application
+    digest: f6c5fd5f7f341e4d117cc26cbeb8d89ac2a78c0f9c01e575eebfce5a008b67d6
+    name: SDV-bpersisbabdg-office-chart
+    urls:
+    - local://SDV-bpersisbabdg-office-chart-4.1.20260722105709.tgz
+    type: application
+    appVersion: "4.1.20260722105709"
+    version: "4.1.20260722105709"
+  - apiVersion: v2
+    created: 2026-07-16T22:19:11.134287573Z
+    description: A Helm chart to deploy the standalone SISBABDG application
+    digest: 0ccf15e2676f9b6951ebe002c69d665190d527d9a78ba7d7b5b46bfc31cb4a19
+    name: SDV-bpersisbabdg-office-chart
+    urls:
+    - local://SDV-bpersisbabdg-office-chart-4.1.20260715154654.tgz
+    type: application
+    appVersion: "4.1.20260715154654"
+    version: "4.1.20260715154654"
+  - apiVersion: v2
+    created: 2026-07-11T14:02:27.712963105Z
+    description: A Helm chart to deploy the standalone SISBABDG application
+    digest: 52ca8a6115e8c81683be875f3f5fb2f3288f9a279effd218163e8930cdd28d7c
+    name: SDV-bpersisbabdg-office-chart
+    urls:
+    - local://SDV-bpersisbabdg-office-chart-4.1.20260710111910.tgz
+    type: application
+    appVersion: "4.1.20260710111910"
+    version: "4.1.20260710111910"
+  - apiVersion: v2
+    created: 2026-07-06T21:52:30.100319693Z
+    description: A Helm chart to deploy the standalone SISBABDG application
+    digest: 5fc6f0f96e78d0a9f21c4074e67e879c76082066ebe989779203d067da31d3c6
+    name: SDV-bpersisbabdg-office-chart
+    urls:
+    - local://SDV-bpersisbabdg-office-chart-4.1.20260623154158.tgz
+    type: application
+    appVersion: "4.1.20260623154158"
+    version: "4.1.20260623154158"
+  - apiVersion: v2
+    created: 2026-06-22T17:52:56.288883214Z
+    description: A Helm chart to deploy the standalone SISBABDG application
+    digest: 61b88ee2f0aee0c5a583fe1ce43d71e488646f220c4964b50204b3b4984eed16
+    name: SDV-bpersisbabdg-office-chart
+    urls:
+    - local://SDV-bpersisbabdg-office-chart-4.1.20260622174432.tgz
+    type: application
+    appVersion: "4.1.20260622174432"
+    version: "4.1.20260622174432"
+  - apiVersion: v2
+    created: 2026-06-22T17:12:51.601841653Z
+    description: A Helm chart to deploy the standalone SISBABDG application
+    digest: b7a3cf0c12c53aa40294c709f5a8363ad945948f35e21e6d078cc88da8b29450
+    name: SDV-bpersisbabdg-office-chart
+    urls:
+    - local://SDV-bpersisbabdg-office-chart-4.1.20260617093838.tgz
+    type: application
+    appVersion: "4.1.20260617093838"
+    version: "4.1.20260617093838"
+  - apiVersion: v2
+    created: 2026-06-05T13:05:44.387592256Z
+    description: A Helm chart to deploy the standalone SISBABDG application
+    digest: 027c2291db2405812c07ab408d8abb22d429358d386fbba8d4c2f1c6a3cff41d
+    name: SDV-bpersisbabdg-office-chart
+    urls:
+    - local://SDV-bpersisbabdg-office-chart-4.1.20260605114734.tgz
+    type: application
+    appVersion: "4.1.20260605114734"
+    version: "4.1.20260605114734"
+  - apiVersion: v2
+    created: 2026-05-29T10:15:19.851259834Z
+    description: A Helm chart to deploy the standalone SISBABDG application
+    digest: 2780e82b37b3716bc5f2d3dda2608d538ff58fa630fc136785ffa49b4eef12fa
+    name: SDV-bpersisbabdg-office-chart
+    urls:
+    - local://SDV-bpersisbabdg-office-chart-4.1.20260529111727.tgz
+    type: application
+    appVersion: "4.1.20260529111727"
+    version: "4.1.20260529111727"
+  - apiVersion: v2
+    created: 2026-05-27T16:38:41.497079675Z
+    description: A Helm chart to deploy the standalone SISBABDG application
+    digest: 072a308860b5323fbe3caedebf7161515af61a00fc26b49c3f44d17ddce8eea9
+    name: SDV-bpersisbabdg-office-chart
+    urls:
+    - local://SDV-bpersisbabdg-office-chart-4.1.20260527144024.tgz
+    type: application
+    appVersion: "4.1.20260527144024"
+    version: "4.1.20260527144024"
+  - apiVersion: v2
+    created: 2026-05-26T12:19:16.967347272Z
+    description: A Helm chart to deploy the standalone SISBABDG application
+    digest: bb03220a2c9e0eeb84771551c2f97c3d7ecd340ff738f935382f9e09d7b35aed
+    name: SDV-bpersisbabdg-office-chart
+    urls:
+    - local://SDV-bpersisbabdg-office-chart-4.1.20260525181954.tgz
+    type: application
+    appVersion: "4.1.20260525181954"
+    version: "4.1.20260525181954"
+  - apiVersion: v2
+    created: 2026-05-20T11:47:20.016927003Z
+    description: A Helm chart to deploy the standalone SISBABDG application
+    digest: c357fa147c9da7a7d7e8fb1e1f835686b026e81bc5f2d74e780c628fcc983671
+    name: SDV-bpersisbabdg-office-chart
+    urls:
+    - local://SDV-bpersisbabdg-office-chart-4.1.20260520132345.tgz
+    type: application
+    appVersion: "4.1.20260520132345"
+    version: "4.1.20260520132345"
+  - apiVersion: v2
+    created: 2026-05-11T09:54:45.531596021Z
+    description: A Helm chart to deploy the standalone SISBABDG application
+    digest: 9a4c09a16aa06bc34876076435184aca1aac0d8e698344f5ba34406740197c2e
+    name: SDV-bpersisbabdg-office-chart
+    urls:
+    - local://SDV-bpersisbabdg-office-chart-4.1.20260508165148.tgz
+    type: application
+    appVersion: "4.1.20260508165148"
+    version: "4.1.20260508165148"
+  - apiVersion: v2
+    created: 2026-05-08T10:34:17.808080709Z
+    description: A Helm chart to deploy the standalone SISBABDG application
+    digest: 49686934aed949a23c6d9dac9b71f7a0f67263f852093d6cdaf69fdce9b29d26
+    name: SDV-bpersisbabdg-office-chart
+    urls:
+    - local://SDV-bpersisbabdg-office-chart-4.1.20260430160101.tgz
+    type: application
+    appVersion: "4.1.20260430160101"
+    version: "4.1.20260430160101"
+  - apiVersion: v2
+    created: 2026-04-23T12:20:19.622627476Z
+    description: A Helm chart to deploy the standalone SISBABDG application
+    digest: b18abc69b9d0a3705aceb2f6ec9f2da1e2cbf735243071dfbbc52d9de32c0f2f
+    name: SDV-bpersisbabdg-office-chart
+    urls:
+    - local://SDV-bpersisbabdg-office-chart-4.1.20260422223851.tgz
+    type: application
+    appVersion: "4.1.20260422223851"
+    version: "4.1.20260422223851"
+  - apiVersion: v2
+    created: 2026-04-22T10:18:48.621820157Z
+    description: A Helm chart to deploy the standalone SISBABDG application
+    digest: 555daa1701307247302fd2c1480887b8f9be1a3188e1152ee6cb09cf3f44ac8b
+    name: SDV-bpersisbabdg-office-chart
+    urls:
+    - local://SDV-bpersisbabdg-office-chart-4.1.20260421173959.tgz
+    type: application
+    appVersion: "4.1.20260421173959"
+    version: "4.1.20260421173959"
+  - apiVersion: v2
+    created: 2026-04-17T09:00:29.031955979Z
+    description: A Helm chart to deploy the standalone SISBABDG application
+    digest: d47040f28065a2ab9c819354d2cede3efaa7467d806210e225ebd35d1c0bc9f6
+    name: SDV-bpersisbabdg-office-chart
+    urls:
+    - local://SDV-bpersisbabdg-office-chart-4.0.20260416193006.tgz
+    type: application
+    appVersion: "4.0.20260416193006"
+    version: "4.0.20260416193006"
+  - apiVersion: v2
+    created: 2026-04-14T16:42:11.156813246Z
+    description: A Helm chart to deploy the standalone SISBABDG application
+    digest: 9c119aafa3bb6edbb6097eaa77a844b3886caf8e624dd9f1e0a0316a62e93df4
+    name: SDV-bpersisbabdg-office-chart
+    urls:
+    - local://SDV-bpersisbabdg-office-chart-4.0.20260414143206.tgz
+    type: application
+    appVersion: "4.0.20260414143206"
+    version: "4.0.20260414143206"
+  - apiVersion: v2
+    created: 2026-04-13T10:24:03.437986916Z
+    description: A Helm chart to deploy the standalone SISBABDG application
+    digest: 8b78771420f2c68b938fe59cf649566cd5e20fcd0c37205afb48525853196d99
+    name: SDV-bpersisbabdg-office-chart
+    urls:
+    - local://SDV-bpersisbabdg-office-chart-4.0.20260410180206.tgz
+    type: application
+    appVersion: "4.0.20260410180206"
+    version: "4.0.20260410180206"
+  - apiVersion: v2
+    created: 2026-03-13T11:04:13.587025773Z
+    description: Helm chart per il deploy su OpenShift di Tomcat
+    digest: eda83f69a63b80472123eb01fa500ff3e1230c2b72604caeda7ce48335c3ae58
+    name: SDV-bpersisbabdg-office-chart
+    urls:
+    - local://SDV-bpersisbabdg-office-chart-4.0.16.tgz
+    version: "4.0.16"
+  - apiVersion: v2
+    created: 2026-02-27T15:41:36.881486872Z
+    description: Helm chart per il deploy su OpenShift di Tomcat
+    digest: 679e021009b6057e638e0ad412c14ccaa8ca6b42663b1060992dcbbf5526a828
+    name: SDV-bpersisbabdg-office-chart
+    urls:
+    - local://SDV-bpersisbabdg-office-chart-4.0.15.tgz
+    version: "4.0.15"
+  - apiVersion: v2
+    created: 2026-02-04T16:34:55.139428604Z
+    description: Helm chart per il deploy su OpenShift di Tomcat
+    digest: 49a5f3d06c6fe82bc574d6598ae7c3d0d54b958c665433c7e127a9be27129b57
+    name: SDV-bpersisbabdg-office-chart
+    urls:
+    - local://SDV-bpersisbabdg-office-chart-4.0.12.tgz
+    version: "4.0.12"
+  - apiVersion: v2
+    created: 2026-02-21T07:11:20.208719195Z
+    description: Helm chart per il deploy su OpenShift di Tomcat
+    digest: 4cd7957d570097dd80c60149db13493d07318f520ff574e34572adc18e0e5265
+    name: SDV-bpersisbabdg-office-chart
+    urls:
+    - local://SDV-bpersisbabdg-office-chart-4.0.8.tgz
+    version: "4.0.8"
+  - apiVersion: v2
+    created: 2026-01-26T16:55:42.373597978Z
+    description: Helm chart per il deploy su OpenShift di Tomcat con 2 web app .war (sisbabdg office + warming services)
+    digest: 9fdf8a9da3f68646aa5ee5d95869ae39323a720119d6337cd159768928bdc5fb
+    name: SDV-bpersisbabdg-office-chart
+    urls:
+    - local://SDV-bpersisbabdg-office-chart-4.0.6.tgz
+    version: "4.0.6"
+  - apiVersion: v2
+    created: 2025-10-27T16:21:03.638988935Z
+    description: Helm chart per il deploy su OpenShift di Tomcat con 2 web app .war (sisbabdg office + warming services)
+    digest: 701ad00a9f00e2f18e4f2f110f9792bc040002ba8e65e0bef302a68eb6d5d6c9
+    name: SDV-bpersisbabdg-office-chart
+    urls:
+    - local://SDV-bpersisbabdg-office-chart-4.0.4.tgz
+    version: "4.0.4"
+  - apiVersion: v2
+    created: 2025-10-24T15:05:57.783392447Z
+    description: Helm chart per il deploy su OpenShift di Tomcat con 2 web app .war (sisbabdg office + warming services)
+    digest: f40a006a89427b0876287c6ec408fd1cf16015463e58af4de446aafbdc99abbc
+    name: SDV-bpersisbabdg-office-chart
+    urls:
+    - local://SDV-bpersisbabdg-office-chart-1.0.9.tgz
+    version: "1.0.9"
+  - apiVersion: v2
+    created: 2025-10-24T14:55:22.787127426Z
+    description: Helm chart per il deploy su OpenShift di Tomcat con 2 web app .war (sisbabdg office + warming services)
+    digest: d94d0a72bbf232d05363857c273977cde1dd52b50e1079001550a490a335dc78
+    name: SDV-bpersisbabdg-office-chart
+    urls:
+    - local://SDV-bper-sisbabdg-office-chart-1.0.8.tgz
+    version: "1.0.8"
+  - apiVersion: v2
+    created: 2025-10-21T16:52:54.551131397Z
+    description: Helm chart per il deploy su OpenShift di Tomcat con 2 web app .war (sisbabdg office + warming services)
+    digest: 37b152bbc4c692c36105cd8efaa7362acb4619e8610d666a44bc50e01db968ef
+    name: SDV-bpersisbabdg-office-chart
+    urls:
+    - local://SDV-bpersisbabdg-office-chart-1.0.7.tgz
+    version: "1.0.7"
+  - apiVersion: v2
+    created: 2025-09-15T11:52:48.433728687Z
+    description: Helm chart per il deploy su OpenShift di Tomcat con 2 web app .war (sisbabdg office + warming services)
+    digest: d7d759232df94f04ee507d85010bda3de720e1a7b43d92c4c2bc604c3835dd1a
+    name: SDV-bpersisbabdg-office-chart
+    urls:
+    - local://SDV-bpersisbabdg-office-chart-1.0.6.tgz
+    version: "1.0.6"
+  - apiVersion: v2
+    created: 2025-09-10T13:47:09.114896431Z
+    description: Helm chart per il deploy su OpenShift di Tomcat con 2 web app .war (sisbabdg office + warming services)
+    digest: 5baf2725ae545134b4491574aa7d2e2241e2744bd47b8a113addaa3cdd075eac
+    name: SDV-bpersisbabdg-office-chart
+    urls:
+    - local://SDV-bpersisbabdg-office-chart-1.0.5.tgz
+    version: "1.0.5"
+  - apiVersion: v2
+    created: 2025-09-09T08:13:24.910472501Z
+    description: Helm chart per il deploy su OpenShift di Tomcat con 2 web app .war (sisbabdg office + warming services)
+    digest: 1cd67ab88474e2dadd99be603edac7de135c76d753ea59bbb10916c9663b3a6c
+    name: SDV-bpersisbabdg-office-chart
+    urls:
+    - local://SDV-bpersisbabdg-office-chart-1.0.4.tgz
+    version: "1.0.4"
+  - apiVersion: v2
+    created: 2025-09-09T08:07:15.055282549Z
+    description: Helm chart per il deploy su OpenShift di Tomcat con 2 web app .war (sisbabdg office + warming services)
+    digest: d8cb0633dd821c60c1169b87b56995db2ccb8cf303554c5e56a4da0fdaf30abf
+    name: SDV-bpersisbabdg-office-chart
+    urls:
+    - local://SDV-bpersisbabdg-office-chart-1.0.3.tgz
+    version: "1.0.3"
+  - apiVersion: v2
+    created: 2025-09-08T11:50:41.957472208Z
+    description: Helm chart per il deploy su OpenShift di Tomcat con 2 web app .war (sisbabdg office + warming services)
+    digest: dea64818882f0362d6399f69b0b516b8a420bcba5d61d10cbbcf9727e36da493
+    name: SDV-bpersisbabdg-office-chart
+    urls:
+    - local://SDV-bpersisbabdg-office-chart-1.0.2.tgz
+    version: "1.0.2"
+  - apiVersion: v2
+    created: 2025-09-08T09:46:03.212552299Z
+    description: Helm chart per il deploy su OpenShift di Tomcat con 2 web app .war (sisbabdg office + warming services)
+    digest: 4cf5440112aa68d9053c01b1afc4723d59420d79cbafb7c65ffaa8cadb2e0dba
+    name: SDV-bpersisbabdg-office-chart
+    urls:
+    - local://SDV-bpersisbabdg-office-chart-1.0.2.tgz
+    version: "1.0.1"
+  - apiVersion: v2
+    created: 2025-10-27T16:05:21.475779138Z
+    description: Helm chart per il deploy su OpenShift di Tomcat con 2 web app .war (sisbabdg office + warming services)
+    digest: 2505a30330f0550f4693c5237b7fcb7a9e74ecc048772b13f14898bb78f449c4
+    name: SDV-bpersisbabdg-office-chart
+    urls:
+    - local://SDV-bpersisbabdg-office-chart-4.0.4.tgz
+    version: "1.0.0"
+  SDV-bper-keycloak:
+  - apiVersion: v2
+    created: 2026-06-26T11:15:43.310391259Z
+    description: BPER Keycloak chart for OpenShift with Oracle DB
+    digest: 82ab65a9df9a3660d51062d4a0dc0719495a8c93a39dfa1bcc6a9af042acf073
+    name: SDV-bper-keycloak
+    urls:
+    - local://SDV-bper-keycloak-1.0.11.tgz
+    type: application
+    appVersion: "26.3.5"
+    version: "1.0.11"
+  - apiVersion: v2
+    created: 2026-06-23T15:41:16.994445781Z
+    description: BPER Keycloak chart for OpenShift with Oracle DB
+    digest: b9aae27009aa478772d63563ec543ff0a4c75c45f032a3c4bc1ac09a4eb58eb8
+    name: SDV-bper-keycloak
+    urls:
+    - local://SDV-bper-keycloak-1.0.10.tgz
+    type: application
+    appVersion: "26.3.5"
+    version: "1.0.10"
+  - apiVersion: v2
+    created: 2026-06-23T14:55:19.906238500Z
+    description: BPER Keycloak chart for OpenShift with Oracle DB
+    digest: 9426b8492bc45b065b22bb3e1d84f27fd2218a3c891c983fe2f1fd5be68443e7
+    name: SDV-bper-keycloak
+    urls:
+    - local://SDV-bper-keycloak-1.0.9.tgz
+    type: application
+    appVersion: "26.3.5"
+    version: "1.0.9"
+  - apiVersion: v2
+    created: 2026-06-23T14:37:23.871474504Z
+    description: BPER Keycloak chart for OpenShift with Oracle DB
+    digest: f060cec8d7c0a1d6cdba50e1cf8d8c4033dea9202217e8c5772e169bfd5a6e25
+    name: SDV-bper-keycloak
+    urls:
+    - local://SDV-bper-keycloak-1.0.8.tgz
+    type: application
+    appVersion: "26.3.5"
+    version: "1.0.8"
+  - apiVersion: v2
+    created: 2026-05-19T10:11:29.928797202Z
+    description: BPER Keycloak chart for OpenShift with Oracle DB
+    digest: ce45229853549ed8363a12ff7128b47f29255ea0c9442ec7fddd1e178f7e8a25
+    name: SDV-bper-keycloak
+    urls:
+    - local://SDV-bper-keycloak-1.0.7.tgz
+    type: application
+    appVersion: "26.3.5"
+    version: "1.0.7"
+  - apiVersion: v2
+    created: 2025-10-23T13:46:41.378755177Z
+    description: BPER Keycloak chart for OpenShift with Oracle DB
+    digest: c7b7b1d3f09e4d527e636af89d593dd0da703f8ae89ec2857624af7c975a3fc1
+    name: SDV-bper-keycloak
+    urls:
+    - local://SDV-bper-keycloak-1.0.6.tgz
+    type: application
+    appVersion: "26.3.5"
+    version: "1.0.6"
+  - apiVersion: v2
+    created: 2026-06-12T13:53:47.315928720Z
+    description: BPER Keycloak chart for OpenShift with Oracle DB
+    digest: 633d56efe0e51ae94cf4f8ce3feb981a63e7d528d6849d2fb0d21f45b5d07332
+    name: SDV-bper-keycloak
+    urls:
+    - local://SDV-bper-keycloak-1.0.5.tgz
+    type: application
+    appVersion: "26.3.5"
+    version: "1.0.5"
+  - apiVersion: v2
+    created: 2025-10-24T13:45:56.037581879Z
+    description: BPER Keycloak chart for OpenShift with Oracle DB
+    digest: 08e55f96fa422b844cb8c96af98bbf12ae2888da019d93ccd39b11cb65dc9a93
+    name: SDV-bper-keycloak
+    urls:
+    - local://SDV-bper-keycloak-1.0.4.tgz
+    type: application
+    appVersion: "26.3.5"
+    version: "1.0.4"
+  - apiVersion: v2
+    created: 2025-09-26T10:14:59.997999575Z
+    description: BPER Keycloak chart for OpenShift with Oracle DB
+    digest: c782b199e8f11584a1e88300db9328ff092d141e40ed5c5f82eec748f87ca91b
+    name: SDV-bper-keycloak
+    urls:
+    - local://SDV-bper-keycloak-chart-1.0.3.tgz
+    type: application
+    appVersion: "26.3.5"
+    version: "1.0.3"
+  - apiVersion: v2
+    created: 2025-09-25T12:07:22.549960757Z
+    description: BPER Keycloak chart for OpenShift with Oracle DB
+    digest: 56c0943ca38dacb37789563849189c2d69d2ef098babe54961fa3053890a0036
+    name: SDV-bper-keycloak
+    urls:
+    - local://SDV-bper-keycloak-chart-1.0.2.tgz
+    type: application
+    appVersion: "26.3.2"
+    version: "1.0.2"
+  - apiVersion: v2
+    created: 2025-09-25T09:15:19.102107943Z
+    description: BPER Keycloak chart for OpenShift with Oracle DB
+    digest: d5275286052fb3695128eaaeff21d447f7e51e1ee2cc174d66aaf96e44c88516
+    name: SDV-bper-keycloak
+    urls:
+    - local://SDV-bper-keycloak-chart-1.0.2.tgz
+    type: application
+    appVersion: "26.3.2"
+    version: "1.0.1"
+  - apiVersion: v2
+    created: 2025-09-22T14:27:01.910299045Z
+    description: BPER Keycloak chart for OpenShift with Oracle DB
+    digest: 26382689f592d74e77384ef07d078b79f69a846137ca7b79f2c02079db89d24b
+    name: SDV-bper-keycloak
+    urls:
+    - local://SDV-bper-keycloak-chart-1.0.0.tgz
+    type: application
+    appVersion: "26.3.2"
+    version: "1.0.0"
+  SDV-dashboard:
+  - apiVersion: v2
+    created: 2025-10-14T13:23:29.100918909Z
+    description: A Helm chart to deploy grace dashboard to Kubernetes
+    digest: 07e3bf81f355ee3138d2d0e22251453a7dcaec2ff5e931bee6f578465e197f75
+    name: SDV-dashboard
+    urls:
+    - local://SDV-dashboard-1.2.20250919152951.tgz
+    type: application
+    appVersion: "1.2.20250919152951"
+    version: "1.2.20250919152951"
+  SDV-bperdatawayrfe-office-chart:
+  - apiVersion: v2
+    created: 2026-05-11T14:33:28.571865175Z
+    description: A Helm chart to deploy Dataway to Kubernetes
+    digest: 7baabfd1e21be872a66dad86fc7843b2f9a27108254c70377a31f356d9d58a18
+    name: SDV-bperdatawayrfe-office-chart
+    urls:
+    - local://SDV-bperdatawayrfe-office-chart-2.0.1.tgz
+    type: application
+    appVersion: "version_placeholder"
+    version: "2.0.1"
+  - apiVersion: v2
+    created: 2026-03-04T14:31:26.361315029Z
+    description: A Helm chart to deploy Dataway to Kubernetes
+    digest: 28ba6c5c89e552e22712296fd130b298cfcb7781b0f34f77bec8a2dcab7e78dc
+    name: SDV-bperdatawayrfe-office-chart
+    urls:
+    - local://SDV-bperdatawayrfe-office-chart-2.0.0.tgz
+    type: application
+    appVersion: "version_placeholder"
+    version: "2.0.0"
+  - apiVersion: v2
+    created: 2026-03-13T13:35:13.833770491Z
+    description: Helm chart per il deploy su OpenShift di Tomcat con 2 web app .war (datawayrfe office)
+    digest: 42ea5eeefd2fc2f38123822a149ee5f8e89a7933e09838cc41c834e0a55e1353
+    name: SDV-bperdatawayrfe-office-chart
+    urls:
+    - local://SDV-bperdatawayrfe-office-chart-1.0.4.tgz
+    version: "1.0.4"
+  - apiVersion: v2
+    created: 2025-10-31T15:33:25.701178403Z
+    description: Helm chart per il deploy su OpenShift di Tomcat con 2 web app .war (datawayrfe office)
+    digest: 601ebd49536a67de473a40c059cde8555d2a9f072463a624950de23ffbf67584
+    name: SDV-bperdatawayrfe-office-chart
+    urls:
+    - local://SDV-bperdatawayrfe-office-chart-1.0.3.tgz
+    version: "1.0.3"
+  - apiVersion: v2
+    created: 2025-10-31T11:32:52.763618419Z
+    description: Helm chart per il deploy su OpenShift di Tomcat con 2 web app .war (datawayrfe office)
+    digest: 6ffb1f204c15228146d9d266f7a307e4a1588ba2008ddba366fa1f8b7b538188
+    name: SDV-bperdatawayrfe-office-chart
+    urls:
+    - local://SDV-bperdatawayrfe-office-chart-1.0.1.tgz
+    version: "1.0.1"
+  - apiVersion: v2
+    created: 2025-10-31T11:18:58.216524510Z
+    description: Helm chart per il deploy su OpenShift di Tomcat con 2 web app .war (datawayrfe office)
+    digest: 1653ae2bfd0a9ae6a1f6d1fc3e33a42dbb1a83937f2ae680a467307a227098c0
+    name: SDV-bperdatawayrfe-office-chart
+    urls:
+    - local://SDV-bperdatawayrfe-office-chart-1.0.0.tgz
+    version: "1.0.0"
+  SDV-bpermode-office-chart:
+  - apiVersion: v2
+    created: 2026-06-05T10:27:37.985879896Z
+    description: A Helm chart to deploy the standalone MODEBDG application
+    digest: 269189a2ffbeb59f3e222d1afb8552d2f350d4788694fa0c04918fc23f81cddc
+    name: SDV-bpermode-office-chart
+    urls:
+    - local://SDV-bpermode-office-chart-2.1.20260605110124.tgz
+    type: application
+    appVersion: "2.1.20260605110124"
+    version: "2.1.20260605110124"
+  - apiVersion: v2
+    created: 2026-05-26T15:46:02.177621116Z
+    description: A Helm chart to deploy the standalone MODEBDG application
+    digest: 4e160bc4781d2f573f9190b6c19c0ed262416474ce7b1eedafd755566c94010f
+    name: SDV-bpermode-office-chart
+    urls:
+    - local://SDV-bpermode-office-chart-2.1.20260526164725.tgz
+    type: application
+    appVersion: "2.1.20260526164725"
+    version: "2.1.20260526164725"
+  - apiVersion: v2
+    created: 2026-05-26T13:46:04.029679789Z
+    description: A Helm chart to deploy the standalone MODEBDG application
+    digest: 26a260f281d47de25a06a6a7bfcdd24e8243c14ca28ed5f8f605c9242572904c
+    name: SDV-bpermode-office-chart
+    urls:
+    - local://SDV-bpermode-office-chart-2.1.20260526150108.tgz
+    type: application
+    appVersion: "2.1.20260526150108"
+    version: "2.1.20260526150108"
+  - apiVersion: v2
+    created: 2026-05-26T11:16:39.559641144Z
+    description: A Helm chart to deploy the standalone MODEBDG application
+    digest: 1ea4feb02a2a70132435d3100ba52bdf6ed944459df3ea97ccef8275ddb3bdf0
+    name: SDV-bpermode-office-chart
+    urls:
+    - local://SDV-bpermode-office-chart-2.1.20260526121826.tgz
+    type: application
+    appVersion: "2.1.20260526121826"
+    version: "2.1.20260526121826"
+  - apiVersion: v2
+    created: 2026-05-19T13:48:07.576314130Z
+    description: A Helm chart to deploy the standalone MODEBDG application
+    digest: b91bceaa9586c45e997b274d2c627613fe52e857a1097615b9608b16623a6632
+    name: SDV-bpermode-office-chart
+    urls:
+    - local://SDV-bpermode-office-chart-2.1.20260519141721.tgz
+    type: application
+    appVersion: "2.1.20260519141721"
+    version: "2.1.20260519141721"
+  - apiVersion: v2
+    created: 2026-05-07T13:35:14.258479517Z
+    description: A Helm chart to deploy the standalone MODEBDG application
+    digest: ba967cb08826b2c630296ccd92d00bc5763047b77f68510aa8cc5a974f07f451
+    name: SDV-bpermode-office-chart
+    urls:
+    - local://SDV-bpermode-office-chart-2.1.20260504162219.tgz
+    type: application
+    appVersion: "2.1.20260504162219"
+    version: "2.1.20260504162219"
+  - apiVersion: v2
+    created: 2026-02-26T16:17:54.705574992Z
+    description: Helm chart per il deploy su OpenShift di Tomcat
+    digest: c828f02bf4b28f1bbc7a3ef48af5ba0598209f4fc659abbfdb2c068ddaae8a9e
+    name: SDV-bpermode-office-chart
+    urls:
+    - local://SDV-bpermode-office-chart-2.0.2.tgz
+    version: "2.0.2"
+  - apiVersion: v2
+    created: 2026-02-11T11:40:27.445676170Z
+    description: Helm chart per il deploy su OpenShift di Tomcat
+    digest: c5036120e2fc063fa57edf4c1743fd673d918752c2bd6a2a61d1b4286f0fc216
+    name: SDV-bpermode-office-chart
+    urls:
+    - local://SDV-bpermode-office-chart-2.0.0.tgz
+    version: "2.0.0"
+  - apiVersion: v2
+    created: 2025-10-20T13:45:14.650743779Z
+    description: Helm chart per il deploy su OpenShift di Tomcat con 2 web app .war (mode office)
+    digest: 4307ccc59f77c070227670de1778930ea44c68e51c100be325434c224ed396b0
+    name: SDV-bpermode-office-chart
+    urls:
+    - local://SDV-bpermode-office-chart-1.0.0.tgz
+    version: "1.0.0"
+  SDV-bperrfe-office-chart:
+  - apiVersion: v2
+    created: 2026-04-21T09:00:13.803882283Z
+    description: A Helm chart to deploy the standalone RFEBBDG application
+    digest: 631fb7179cedfdfc2615f6135858c56aa68469dc6c9820853da47c68048bc904
+    name: SDV-bperrfe-office-chart
+    urls:
+    - local://SDV-bperrfe-office-chart-3.1.20260420183006.tgz
+    type: application
+    appVersion: "3.1.20260420183006"
+    version: "3.1.20260420183006"
+  - apiVersion: v2
+    created: 2026-04-20T13:47:11.359607268Z
+    description: A Helm chart to deploy the standalone RFEBBDG application
+    digest: 07b45a154962dadeba7ee3fa23f589fb2ef939469794a32561f7de2b48c64f6d
+    name: SDV-bperrfe-office-chart
+    urls:
+    - local://SDV-bperrfe-office-chart-3.1.20260417153006.tgz
+    type: application
+    appVersion: "3.1.20260417153006"
+    version: "3.1.20260417153006"
+  - apiVersion: v2
+    created: 2026-03-19T10:46:49.867871201Z
+    description: Helm chart per il deploy su OpenShift di Tomcat
+    digest: b56102f44715a48058e0fff0d3d03f9b2981bad7b6d2b48e36daf00bb02a4153
+    name: SDV-bperrfe-office-chart
+    urls:
+    - local://SDV-bperrfe-office-chart-3.0.3.tgz
+    version: "3.0.3"
+  - apiVersion: v2
+    created: 2025-10-20T14:28:08.346692654Z
+    description: Helm chart per il deploy su OpenShift di Tomcat con 2 web app .war (rfe office)
+    digest: 53c18dd7c97619bf23dec39dd40a142cc8a81fbba8e894a27c3a694092adff34
+    name: SDV-bperrfe-office-chart
+    urls:
+    - local://SDV-bperrfe-office-chart-1.0.0.tgz
+    version: "1.0.0"
+  SDV-bperwikidocs-office-chart:
+  - apiVersion: v2
+    created: 2026-07-23T13:47:47.969227029Z
+    description: A Helm chart to deploy the standalone WIKIDOCS application
+    digest: 46fcd2280581b41dbe60c8c10c77fa8b26eab26d9f9b34d0733eecca3aed4ce6
+    name: SDV-bperwikidocs-office-chart
+    urls:
+    - local://SDV-bperwikidocs-office-chart-2.1.20260720091829.tgz
+    type: application
+    appVersion: "2.1.20260720091829"
+    version: "2.1.20260720091829"
+  - apiVersion: v2
+    created: 2026-07-16T22:18:48.193452830Z
+    description: A Helm chart to deploy the standalone WIKIDOCS application
+    digest: bb40323a2d85288a1d7410c87f7bd6f00d3d5e47447dc2cbc2c73eea5e50ab71
+    name: SDV-bperwikidocs-office-chart
+    urls:
+    - local://SDV-bperwikidocs-office-chart-2.1.20260715151729.tgz
+    type: application
+    appVersion: "2.1.20260715151729"
+    version: "2.1.20260715151729"
+  - apiVersion: v2
+    created: 2026-07-07T12:17:27.273712102Z
+    description: A Helm chart to deploy the standalone WIKIDOCS application
+    digest: a225e1baf936fbaba19369ab31ae42fdba0b77029f745774b3124d7d611cc8a0
+    name: SDV-bperwikidocs-office-chart
+    urls:
+    - local://SDV-bperwikidocs-office-chart-2.1.20260707114236.tgz
+    type: application
+    appVersion: "2.1.20260707114236"
+    version: "2.1.20260707114236"
+  - apiVersion: v2
+    created: 2026-07-06T21:53:30.889394238Z
+    description: A Helm chart to deploy the standalone WIKIDOCS application
+    digest: 99c4ac730440a05efecc4ee3e21f2a5bc2cc04e0ef25a03bbacb992d5a61354f
+    name: SDV-bperwikidocs-office-chart
+    urls:
+    - local://SDV-bperwikidocs-office-chart-2.1.20260703163012.tgz
+    type: application
+    appVersion: "2.1.20260703163012"
+    version: "2.1.20260703163012"
+  - apiVersion: v2
+    created: 2026-07-02T11:52:19.869279248Z
+    description: A Helm chart to deploy the standalone WIKIDOCS application
+    digest: 3427ddfbd3458bdbb2434c7acbb3598a7292252c4ae6dfdefdb735bd1e51533c
+    name: SDV-bperwikidocs-office-chart
+    urls:
+    - local://SDV-bperwikidocs-office-chart-2.1.20260702124328.tgz
+    type: application
+    appVersion: "2.1.20260702124328"
+    version: "2.1.20260702124328"
+  - apiVersion: v2
+    created: 2026-06-16T11:04:09.735398307Z
+    description: A Helm chart to deploy the standalone WIKIDOCS application
+    digest: 41b80b0a5e9b04215e2154c2fb60f2745e1c4ca015d7696c7d28df04384ddd0f
+    name: SDV-bperwikidocs-office-chart
+    urls:
+    - local://SDV-bperwikidocs-office-chart-2.1.20260616103823.tgz
+    type: application
+    appVersion: "2.1.20260616103823"
+    version: "2.1.20260616103823"
+  - apiVersion: v2
+    created: 2026-06-12T17:37:01.212602800Z
+    description: A Helm chart to deploy the standalone WIKIDOCS application
+    digest: 506e019d53bd8d47fa5ca25355d08b8b37c631962b88b34f3dd63abaccc7d06b
+    name: SDV-bperwikidocs-office-chart
+    urls:
+    - local://SDV-bperwikidocs-office-chart-2.1.20260612142643.tgz
+    type: application
+    appVersion: "2.1.20260612142643"
+    version: "2.1.20260612142643"
+  - apiVersion: v2
+    created: 2026-06-10T15:07:31.674668208Z
+    description: A Helm chart to deploy the standalone WIKIDOCS application
+    digest: dc072ea180121d28c7b9403e0f9a697115bb7c2a238ac08222c1acd13ded58a4
+    name: SDV-bperwikidocs-office-chart
+    urls:
+    - local://SDV-bperwikidocs-office-chart-2.1.20260610150000.tgz
+    type: application
+    appVersion: "2.1.20260610150000"
+    version: "2.1.20260610150000"
+  - apiVersion: v2
+    created: 2026-06-09T14:13:37.034100514Z
+    description: A Helm chart to deploy the standalone WIKIDOCS application
+    digest: 948378750d5e273f0274c19d80c54031a58f36b070f6b802e400fb7a63249254
+    name: SDV-bperwikidocs-office-chart
+    urls:
+    - local://SDV-bperwikidocs-office-chart-2.1.20260609130000.tgz
+    type: application
+    appVersion: "2.1.20260609130000"
+    version: "2.1.20260609130000"
+  - apiVersion: v2
+    created: 2026-05-21T11:50:25.247537105Z
+    description: A Helm chart to deploy the standalone WIKIDOCS application
+    digest: fe4b3e1b39ae14677a73c42b0e470c5f364d08a0eb3e2d5361b40f58d629c1f6
+    name: SDV-bperwikidocs-office-chart
+    urls:
+    - local://SDV-bperwikidocs-office-chart-2.1.20260515095044.tgz
+    type: application
+    appVersion: "2.1.20260515095044"
+    version: "2.1.20260515095044"
+  - apiVersion: v2
+    created: 2026-04-21T15:36:36.782679643Z
+    description: A Helm chart to deploy the standalone WIKIDOCS application
+    digest: 1a3b759b189831dcb92453d18f5c3b2cd8ef03f0ec7d976e64ea5a13536cef2d
+    name: SDV-bperwikidocs-office-chart
+    urls:
+    - local://SDV-bperwikidocs-office-chart-2.0.20260331221506.tgz
+    type: application
+    appVersion: "2.0.20260331221506"
+    version: "2.0.20260331221506"
+  - apiVersion: v2
+    created: 2025-10-13T10:09:28.730472412Z
+    description: Helm chart per il deploy su OpenShift di Tomcat con 2 web app .war (wikidocs office)
+    digest: 09b54078b0bcadf845df4040d6b697cd925468424600af4d72e325fc287ec2e5
+    name: SDV-bperwikidocs-office-chart
+    urls:
+    - local://SDV-bperwikidocs-office-1.0.0.tgz
+    version: "1.0.7"
+  - apiVersion: v2
+    created: 2025-11-12T10:39:45.203901898Z
+    description: Helm chart per il deploy su OpenShift di Tomcat con 2 web app .war (wikidocs office)
+    digest: 15ac7f99db064183a7f09e7676d0c6f1795ed39748f721cff7b5a7033727c7dd
+    name: SDV-bperwikidocs-office-chart
+    urls:
+    - local://SDV-bperwikidocs-office-chart-1.0.1.tgz
+    version: "1.0.1"
+  - apiVersion: v2
+    created: 2025-12-11T10:33:18.478567626Z
+    description: Helm chart per il deploy su OpenShift di Tomcat con 2 web app .war (wikidocs office)
+    digest: 04c8b1a5e83f602110fc693459df3df59965ff5c4305660872b9f05f43dd9fbd
+    name: SDV-bperwikidocs-office-chart
+    urls:
+    - local://SDV-bperwikidocs-office-chart-1.0.0.tgz
+    version: "1.0.0"
+  SDV-wikidbpuma-office-chart:
+  - apiVersion: v2
+    created: 2025-10-28T10:57:16.380357184Z
+    description: A Helm chart to deploy wikidbpuma to Kubernetes
+    digest: fea9cceda8c3defeab4ce565f0d82d443716531bdae00544c322f6a787cbb324
+    name: SDV-wikidbpuma-office-chart
+    urls:
+    - local://SDV-bperwikidbpuma-office-chart-1.1.20251010142003.tgz
+    type: application
+    appVersion: "version_placeholder"
+    version: "1.1.20251010142003"
+  - apiVersion: v2
+    created: 2025-10-15T13:28:09.289579134Z
+    description: A Helm chart to deploy wikidbpuma to Kubernetes
+    digest: 277efc137c8e0374e571bb47a310902b064edf5a49fbc9ebb6b18366db07e7a8
+    name: SDV-wikidbpuma-office-chart
+    urls:
+    - local://SDV-wikidbpuma-1.1.20251010142003.tgz
+    type: application
+    appVersion: "version_placeholder"
+    version: "1.0.0"
+  SDV-bperinminder-chart:
+  - apiVersion: v2
+    created: 2025-12-02T15:21:11.975511836Z
+    description: Helm chart per il deploy su OpenShift di Tomcat (inminder)
+    digest: af06ffc6c14ca938f872c49f18c571a72d3f151b349b1db787e6d2891923cf00
+    name: SDV-bperinminder-chart
+    urls:
+    - local://SDV-bperinminder-chart-2.0.0.tgz
+    version: "2.0.0"
+  - apiVersion: v2
+    created: 2025-10-15T13:59:57.942798315Z
+    description: Helm chart per il deploy su OpenShift di Tomcat con 2 web app .war (inminder)
+    digest: eb47520edc4b1b0d2e39b9b76756cb474ded9664ae349d25b53da992cdea2c42
+    name: SDV-bperinminder-chart
+    urls:
+    - local://SDV-inminder-1.0.0.tgz
+    version: "1.0.0"
+  SDV-bperinminder-office-chart:
+  - apiVersion: v2
+    created: 2025-12-02T15:27:13.798608489Z
+    description: Helm chart per il deploy su OpenShift di Tomcat (inminder)
+    digest: 9ae1e23c2266d8ce251d9774ea180e6488605aae7cc45e5859cea2ae2ac2ec23
+    name: SDV-bperinminder-office-chart
+    urls:
+    - local://SDV-bperinminder-office-chart-2.0.0.tgz
+    version: "2.0.0"
+  - apiVersion: v2
+    created: 2025-10-30T14:18:22.289319743Z
+    description: Helm chart per il deploy su OpenShift di Tomcat con 2 web app .war (inminder)
+    digest: 6eae9417f20e061999b690cafb090c54329916bd66fd936bb7de6dabbcb1c087
+    name: SDV-bperinminder-office-chart
+    urls:
+    - local://SDV-bperinminder-office-chart-1.0.0.tgz
+    version: "1.0.0"
+  SDV-bperdataway-office-chart:
+  - apiVersion: v2
+    created: 2026-03-13T13:31:49.545768719Z
+    description: A Helm chart to deploy Dataway to Kubernetes
+    digest: 1bb93c1dc031324123db818c38d9d65dfa0b132cd1d5281eea7fceaafdcd965c
+    name: SDV-bperdataway-office-chart
+    urls:
+    - local://SDV-bperdataway-office-chart-1.6.20260109091406.tgz
+    type: application
+    appVersion: "version_placeholder"
+    version: "1.6.20260109091406"
+  - apiVersion: v2
+    created: 2025-12-17T16:09:43.430317335Z
+    description: A Helm chart to deploy Dataway to Kubernetes
+    digest: b279fc825a52bbd3a406825dbd6c83f22a3593aa5299088c4d18042f402171d6
+    name: SDV-bperdataway-office-chart
+    urls:
+    - local://SDV-bperdataway-office-chart-1.0.1.tgz
+    type: application
+    appVersion: "version_placeholder"
+    version: "1.0.1"
+  - apiVersion: v2
+    created: 2026-05-25T09:00:45.655124194Z
+    description: A Helm chart to deploy Dataway to Kubernetes
+    digest: 88c2776f1e94b024667c6ab2aa9b67ef62d42db0f964c949559507f99ff434a3
+    name: SDV-bperdataway-office-chart
+    urls:
+    - local://SDV-bperdataway-office-chart-2.0.1.tgz
+    type: application
+    appVersion: "version_placeholder"
+    version: "1.0.0"
+  SDV-bperdatawaysisba-office-chart:
+  - apiVersion: v2
+    created: 2026-03-10T15:28:14.365247878Z
+    description: A Helm chart to deploy Dataway to Kubernetes
+    digest: 2e6266e1d782909fa5adcef6f28afafbdec5f52a81b057f14d7ae835dfeae330
+    name: SDV-bperdatawaysisba-office-chart
+    urls:
+    - local://SDV-bperdatawaysisba-office-chart-2.0.1.tgz
+    type: application
+    appVersion: "version_placeholder"
+    version: "2.0.1"
+  - apiVersion: v2
+    created: 2026-03-05T13:28:37.507042872Z
+    description: A Helm chart to deploy Dataway to Kubernetes
+    digest: 41b9c5e14b7afab929807d756fb813fca4cc2a9285742a5ad02ff2556d8983e6
+    name: SDV-bperdatawaysisba-office-chart
+    urls:
+    - local://SDV-bperdatawaysisba-office-chart-2.0.0.tgz
+    type: application
+    appVersion: "version_placeholder"
+    version: "2.0.0"
+  - apiVersion: v2
+    created: 2026-01-07T11:22:57.821896254Z
+    description: A Helm chart to deploy Dataway to Kubernetes
+    digest: 7edb52304f51da7fcfd4716a72814762a58da581e456d0f622b6a7b40d4d7200
+    name: SDV-bperdatawaysisba-office-chart
+    urls:
+    - local://SDV-bperdatawaysisba-office-chart-1.0.1.tgz
+    type: application
+    appVersion: "version_placeholder"
+    version: "1.0.1"
+  - apiVersion: v2
+    created: 2025-12-10T19:39:43.274710758Z
+    description: A Helm chart to deploy Dataway to Kubernetes
+    digest: 199adf3d46cf510cdc22cc7b5185027cb60d2aca0a1e5b8e8750ef9aa3335093
+    name: SDV-bperdatawaysisba-office-chart
+    urls:
+    - local://SDV-bperdatawaysisba-office-chart-1.0.0.tgz
+    type: application
+    appVersion: "version_placeholder"
+    version: "1.0.0"
+  SDV-bperremarx-office-chart:
+  - apiVersion: v2
+    created: 2026-07-23T13:46:54.866066381Z
+    description: A Helm chart to deploy remarx to Kubernetes
+    digest: fb34faeef9c6f59a4f409335f9391b631ce2d77330d828f9dfd5542e9a1bc46a
+    name: SDV-bperremarx-office-chart
+    urls:
+    - local://SDV-bperremarx-office-chart-2.2.20260722144512.tgz
+    type: application
+    appVersion: "2.2.20260722144512"
+    version: "2.2.20260722144512"
+  - apiVersion: v2
+    created: 2026-07-16T22:19:37.078710640Z
+    description: A Helm chart to deploy remarx to Kubernetes
+    digest: d78f371738548b59405f15387f51bcdec58454bb2528d83dc8cf995d6113c783
+    name: SDV-bperremarx-office-chart
+    urls:
+    - local://SDV-bperremarx-office-chart-2.2.20260714170915.tgz
+    type: application
+    appVersion: "2.2.20260714170915"
+    version: "2.2.20260714170915"
+  - apiVersion: v2
+    created: 2026-07-11T14:02:02.911063138Z
+    description: A Helm chart to deploy remarx to Kubernetes
+    digest: ebd3eb0bc93ac5a014627d4170119efe74a9dc82a44b729638b9cc9d7e065c8b
+    name: SDV-bperremarx-office-chart
+    urls:
+    - local://SDV-bperremarx-office-chart-2.2.20260710115413.tgz
+    type: application
+    appVersion: "2.2.20260710115413"
+    version: "2.2.20260710115413"
+  - apiVersion: v2
+    created: 2026-07-06T21:51:45.594514121Z
+    description: A Helm chart to deploy remarx to Kubernetes
+    digest: acffde5d09bb6fb304ce12fe23112c33442991c27174a4df30cc438b4521b7f7
+    name: SDV-bperremarx-office-chart
+    urls:
+    - local://SDV-bperremarx-office-chart-2.2.20260701130011.tgz
+    type: application
+    appVersion: "2.2.20260701130011"
+    version: "2.2.20260701130011"
+  - apiVersion: v2
+    created: 2026-06-22T17:12:24.728949984Z
+    description: A Helm chart to deploy remarx to Kubernetes
+    digest: 6678aa40efdc4ba9c0487a5e9d5f73a43a95b5fa7256c8c30f040a6b3b1ee61e
+    name: SDV-bperremarx-office-chart
+    urls:
+    - local://SDV-bperremarx-office-chart-2.2.20260611094000.tgz
+    type: application
+    appVersion: "2.2.20260611094000"
+    version: "2.2.20260611094000"
+  - apiVersion: v2
+    created: 2026-06-12T17:36:26.250740956Z
+    description: A Helm chart to deploy remarx to Kubernetes
+    digest: 03fd0531e8ce61408d6fc16e986ff5e27cb63b63d6adc1bcbb0817e21c461c69
+    name: SDV-bperremarx-office-chart
+    urls:
+    - local://SDV-bperremarx-office-chart-2.2.20260609142851.tgz
+    type: application
+    appVersion: "2.2.20260609142851"
+    version: "2.2.20260609142851"
+  - apiVersion: v2
+    created: 2026-06-04T15:48:48.359480618Z
+    description: A Helm chart to deploy remarx to Kubernetes
+    digest: 9b82c28da977d49453394e75859b72f68a0ae859b88b97d125d65156c23aff3a
+    name: SDV-bperremarx-office-chart
+    urls:
+    - local://SDV-bperremarx-office-chart-2.2.20260604171900.tgz
+    type: application
+    appVersion: "2.2.20260604171900"
+    version: "2.2.20260604171900"
+  - apiVersion: v2
+    created: 2026-05-21T06:47:47.887699195Z
+    description: A Helm chart to deploy remarx to Kubernetes
+    digest: 68f2639665ae0833324a3e61d5195ee6ee4fba699238e02063ecfe70194d47bc
+    name: SDV-bperremarx-office-chart
+    urls:
+    - local://SDV-bperremarx-office-chart-2.2.20260519180811.tgz
+    type: application
+    appVersion: "2.2.20260519180811"
+    version: "2.2.20260519180811"
+  - apiVersion: v2
+    created: 2026-05-18T14:25:47.118766400Z
+    description: A Helm chart to deploy remarx to Kubernetes
+    digest: a0d9b88ddf42849c07277ffdc181d08f5f66ab5985ddf13626cab03268b0d9df
+    name: SDV-bperremarx-office-chart
+    urls:
+    - local://SDV-bperremarx-office-chart-2.1.20260512121311.tgz
+    type: application
+    appVersion: "2.1.20260512121311"
+    version: "2.1.20260512121311"
+  - apiVersion: v2
+    created: 2026-04-17T10:54:33.042245386Z
+    description: A Helm chart to deploy remarx to Kubernetes
+    digest: f0773a3290a85b4fe6d9eb27bb35c7426a698aad007ef77e2ec75677237fa57e
+    name: SDV-bperremarx-office-chart
+    urls:
+    - local://SDV-bperremarx-office-chart-2.0.20260409163500.tgz
+    type: application
+    appVersion: "2.0.20260409163500"
+    version: "2.0.20260409163500"
+  - apiVersion: v2
+    created: 2026-03-13T08:39:47.324238810Z
+    description: A Helm chart to deploy remarx to Kubernetes
+    digest: 61f32a2bd3daacc2a55e1794511a867adf76e95f0fde87f51888b7dc1f48b845
+    name: SDV-bperremarx-office-chart
+    urls:
+    - local://SDV-bperremarx-office-chart-2.0.20260227121135.tgz
+    type: application
+    appVersion: "2.0.20260227121135"
+    version: "2.0.20260227121135"
+  - apiVersion: v2
+    created: 2025-10-23T10:07:57.878402632Z
+    description: A Helm chart to deploy Remarx to Kubernetes
+    digest: 96b92dd3a43aa83a128b2a0f9af6115a7eac2df40ce5bb6b4c89072e11572aa2
+    name: SDV-bperremarx-office-chart
+    urls:
+    - local://SDV-bperremarx-office-chart-1.1.332.tgz
+    type: application
+    appVersion: "version_placeholder"
+    version: "1.1.332"
+  - apiVersion: v2
+    created: 2025-12-10T14:17:33.906021463Z
+    description: A Helm chart to deploy Remarx to Kubernetes
+    digest: cdc249cb83a1d3bf71cacc39b0399a1c1bd6336c75d1a84a224074b82fc11257
+    name: SDV-bperremarx-office-chart
+    urls:
+    - local://SDV-bperremarx-office-chart-1.0.0.tgz
+    type: application
+    appVersion: "version_placeholder"
+    version: "1.0.0"
+  SDV-bper-keycloak-chart:
+  - apiVersion: v2
+    created: 2026-06-23T14:30:04.387449226Z
+    description: BPER Keycloak chart for OpenShift with Oracle DB
+    digest: 00ebfcef7ff7ac515f6d44e428ca2ae3da16762e07374a5d728f062418c0438f
+    name: SDV-bper-keycloak-chart
+    urls:
+    - local://SDV-bper-keycloak-chart-1.0.8.tgz
+    type: application
+    appVersion: "26.3.5"
+    version: "1.0.8"
+  - apiVersion: v2
+    created: 2026-06-23T13:51:34.610553769Z
+    description: BPER Keycloak chart for OpenShift with Oracle DB
+    digest: 36a7e6e0a3e9c65f9f3a1874baecdbeedffc91f29178b6f82f9c550a374c3ecc
+    name: SDV-bper-keycloak-chart
+    urls:
+    - local://SDV-bper-keycloak-chart-1.0.7.tgz
+    type: application
+    appVersion: "26.3.5"
+    version: "1.0.7"
+  - apiVersion: v2
+    created: 2025-10-23T13:24:20.890426972Z
+    description: BPER Keycloak chart for OpenShift with Oracle DB
+    digest: 5c45c54b0dc5ab13e5522c7daa0581b8df5a4d4968d245041978f14429149d72
+    name: SDV-bper-keycloak-chart
+    urls:
+    - local://SDV-bper-keycloak-1.0.6.tgz
+    type: application
+    appVersion: "26.3.5"
+    version: "1.0.6"
+  - apiVersion: v2
+    created: 2025-10-23T12:52:54.479622316Z
+    description: BPER Keycloak chart for OpenShift with Oracle DB
+    digest: f6a0bee6de4b14ade1db08eea2980987de3e2a2d48cb0aa7ac8f97796776c12f
+    name: SDV-bper-keycloak-chart
+    urls:
+    - local://SDV-bper-keycloak-chart-1.0.5.tgz
+    type: application
+    appVersion: "26.3.5"
+    version: "1.0.5"
+  SDV-bpergrace-portal-chart:
+  - apiVersion: v2
+    created: 2025-11-06T09:49:09.807354801Z
+    description: A Helm chart to deploy grace portal to Kubernetes
+    digest: 1139212a50f762e7f2ed59735fa7008ad6bcbafb8cbee42ca276ccfe1edf6ffa
+    name: SDV-bpergrace-portal-chart
+    urls:
+    - local://SDV-bpergrace-portal-chart-1.0.0.tgz
+    type: application
+    appVersion: "version_placeholder"
+    version: "1.0.0"
+  SDV-bperwikilink-office-chart:
+  - apiVersion: v2
+    created: 2026-07-23T13:48:12.972812544Z
+    description: A Helm chart to deploy the Wikilink standalone application
+    digest: 2e61ca6a9de10744829188d427f34ccd81ae4a0fb0bebd1c117535e56b52a232
+    name: SDV-bperwikilink-office-chart
+    urls:
+    - local://SDV-bperwikilink-office-chart-3.11.20260721145900.tgz
+    type: application
+    appVersion: "3.11.20260721145900"
+    version: "3.11.20260721145900"
+  - apiVersion: v2
+    created: 2026-07-09T18:43:36.215869766Z
+    description: A Helm chart to deploy the Wikilink standalone application
+    digest: 833c3e316219ad4cd95c89472e31f39408ff0d8fbc8548dffc5b6f4b7b8343e1
+    name: SDV-bperwikilink-office-chart
+    urls:
+    - local://SDV-bperwikilink-office-chart-3.11.20260708102542.tgz
+    type: application
+    appVersion: "3.11.20260708102542"
+    version: "3.11.20260708102542"
+  - apiVersion: v2
+    created: 2026-07-06T21:53:50.968620094Z
+    description: A Helm chart to deploy the Wikilink standalone application
+    digest: 57458b561bc24cb784e648bc15c4667f1dc985f911352c3ba3118554eeb163d7
+    name: SDV-bperwikilink-office-chart
+    urls:
+    - local://SDV-bperwikilink-office-chart-3.11.20260702150256.tgz
+    type: application
+    appVersion: "3.11.20260702150256"
+    version: "3.11.20260702150256"
+  - apiVersion: v2
+    created: 2026-06-22T19:25:10.353098085Z
+    description: A Helm chart to deploy the Wikilink standalone application
+    digest: 4c053b7d78734cfdb870a4131fcb24603f06b2b2e79db63f6dc3420c383241a8
+    name: SDV-bperwikilink-office-chart
+    urls:
+    - local://SDV-bperwikilink-office-chart-3.11.20260622150322.tgz
+    type: application
+    appVersion: "3.11.20260622150322"
+    version: "3.11.20260622150322"
+  - apiVersion: v2
+    created: 2026-06-22T17:14:00.103929570Z
+    description: A Helm chart to deploy the Wikilink standalone application
+    digest: d01a357e7748208b8578a30a731a80a17721e0c5e2184b797a4864f94e8bf4c1
+    name: SDV-bperwikilink-office-chart
+    urls:
+    - local://SDV-bperwikilink-office-chart-3.11.20260617092843.tgz
+    type: application
+    appVersion: "3.11.20260617092843"
+    version: "3.11.20260617092843"
+  - apiVersion: v2
+    created: 2026-06-05T10:27:06.277244978Z
+    description: A Helm chart to deploy the Wikilink standalone application
+    digest: 6befc808c545ff499e5da189a6126dba6ff224e9d7f076c7418acfad44d5d157
+    name: SDV-bperwikilink-office-chart
+    urls:
+    - local://SDV-bperwikilink-office-chart-3.11.20260605112206.tgz
+    type: application
+    appVersion: "3.11.20260605112206"
+    version: "3.11.20260605112206"
+  - apiVersion: v2
+    created: 2026-05-28T08:39:54.077970973Z
+    description: A Helm chart to deploy the Wikilink standalone application
+    digest: ff016aed17222589faa3b9b208bc1c74fb1ba97aa50ccaf583b09ec50ed4e5a4
+    name: SDV-bperwikilink-office-chart
+    urls:
+    - local://SDV-bperwikilink-office-chart-3.11.20260528093346.tgz
+    type: application
+    appVersion: "3.11.20260528093346"
+    version: "3.11.20260528093346"
+  - apiVersion: v2
+    created: 2026-05-27T16:39:14.406314853Z
+    description: A Helm chart to deploy the Wikilink standalone application
+    digest: 8a2758d877ce303c965ea752ae775470504a7421c32bc3dfa1a94396e5151ef9
+    name: SDV-bperwikilink-office-chart
+    urls:
+    - local://SDV-bperwikilink-office-chart-3.11.20260527162038.tgz
+    type: application
+    appVersion: "3.11.20260527162038"
+    version: "3.11.20260527162038"
+  - apiVersion: v2
+    created: 2026-05-19T13:37:47.143944810Z
+    description: A Helm chart to deploy the Wikilink standalone application
+    digest: c28b2e17468a6f86080700c8cf94f323ef59bbe0a20304a74f9ed590959c3127
+    name: SDV-bperwikilink-office-chart
+    urls:
+    - local://SDV-bperwikilink-office-chart-3.11.20260519121254.tgz
+    type: application
+    appVersion: "3.11.20260519121254"
+    version: "3.11.20260519121254"
+  - apiVersion: v2
+    created: 2026-05-18T12:43:10.545990408Z
+    description: A Helm chart to deploy the Wikilink standalone application
+    digest: 3be24cff39f8090c65b45b24349a0f632eaff612caaca887aa5894fd848310ae
+    name: SDV-bperwikilink-office-chart
+    urls:
+    - local://SDV-bperwikilink-office-chart-3.11.20260515095221.tgz
+    type: application
+    appVersion: "3.11.20260515095221"
+    version: "3.11.20260515095221"
+  - apiVersion: v2
+    created: 2026-04-30T09:05:56.148506082Z
+    description: A Helm chart to deploy the Wikilink standalone application
+    digest: 6b3f774ae5dba6afc03638920a6311f5a0f8138318461defd1f9464c77a67ba0
+    name: SDV-bperwikilink-office-chart
+    urls:
+    - local://SDV-bperwikilink-office-chart-3.11.20260427165805.tgz
+    type: application
+    appVersion: "3.11.20260427165805"
+    version: "3.11.20260427165805"
+  - apiVersion: v2
+    created: 2026-03-09T10:42:52.585254902Z
+    description: Helm chart per il deploy su OpenShift di Tomcat
+    digest: d7ba2c132eb6ce2fee4de92d3603ebb7863e2cc146afbb4328a43b1e69de4da1
+    name: SDV-bperwikilink-office-chart
+    urls:
+    - local://SDV-bperwikilink-office-chart-3.0.9.tgz
+    version: "3.0.9"
+  - apiVersion: v2
+    created: 2026-02-18T16:35:34.002733191Z
+    description: Helm chart per il deploy su OpenShift di Tomcat
+    digest: 66e9808953e98342059895b70084b5a90759387423691a40c2ccf4d574a20de4
+    name: SDV-bperwikilink-office-chart
+    urls:
+    - local://SDV-bperwikilink-office-chart-3.0.8.tgz
+    version: "3.0.8"
+  - apiVersion: v2
+    created: 2025-12-09T15:30:20.985254036Z
+    description: Helm chart per il deploy su OpenShift di Tomcat
+    digest: 9d8bb93f56f61d1fcbf6094bce35ed79765b48e22c4f9cbaa72e5bf6e86a19b3
+    name: SDV-bperwikilink-office-chart
+    urls:
+    - local://SDV-bperwikilink-office-chart-3.0.5.tgz
+    version: "3.0.5"
+  - apiVersion: v2
+    created: 2025-11-25T13:31:32.731011105Z
+    description: Helm chart per il deploy su OpenShift di Tomcat con 2 web app .war (wikilink office + warming services)
+    digest: 9fdb701a4939507bc066c7a8ae21eab6a5cd1208697e1ff4a6bbebed29d7fe48
+    name: SDV-bperwikilink-office-chart
+    urls:
+    - local://SDV-bperwikilink-office-chart-3.0.3.tgz
+    version: "3.0.3"
+  - apiVersion: v2
+    created: 2025-11-18T10:23:08.699739874Z
+    description: Helm chart per il deploy su OpenShift di Tomcat con 2 web app .war (sisbabdg office + warming services)
+    digest: bb0328443fd62db190d9a8c4c50ee6c459e1d0391cc1aec8ddac82a93222085d
+    name: SDV-bperwikilink-office-chart
+    urls:
+    - local://SDV-bperwikilink-office-chart-3.0.3.tgz
+    version: "1.0.0"
+  SDV-wikilink-office-chart:
+  - apiVersion: v2
+    created: 2026-02-18T16:19:12.594378462Z
+    description: Helm chart per il deploy su OpenShift di Tomcat
+    digest: 0aa7713b7eef64709271fd6547e53bbb1f229cfd213739a55cac8fd4eb1e2af2
+    name: SDV-wikilink-office-chart
+    urls:
+    - local://SDV-wikilink-office-chart-3.0.8.tgz
+    version: "3.0.8"
+  - apiVersion: v2
+    created: 2025-12-09T15:20:50.386686357Z
+    description: Helm chart per il deploy su OpenShift di Tomcat
+    digest: 8e600db2f7a2de956758d036642fe7c324fdbba2a7f17713edfd5b8b8c294da2
+    name: SDV-wikilink-office-chart
+    urls:
+    - local://SDV-wikilink-office-chart-3.0.5.tgz
+    version: "3.0.5"
+  SDV-anacredit-office-chart:
+  - apiVersion: v2
+    created: 2026-01-15T09:15:00.835588792Z
+    description: Helm chart per il deploy su OpenShift di Tomcat
+    digest: 214224d583be5b4eb7b3d1cd7357bb6b9b7bb7872643a2385c6e310262f7bc16
+    name: SDV-anacredit-office-chart
+    urls:
+    - local://SDV-anacredit-office-chart-3.0.1.tgz
+    version: "3.0.1"
+  SDV-bperanacredit-office-chart:
+  - apiVersion: v2
+    created: 2026-07-09T18:43:13.515004309Z
+    description: A Helm chart to deploy the standalone Anacredit application
+    digest: 8159ed49dc292a8852a9f21b75c602f35e875b1bf40fd32e30b0f7217846ab8f
+    name: SDV-bperanacredit-office-chart
+    urls:
+    - local://SDV-bperanacredit-office-chart-3.0.20260709152130.tgz
+    type: application
+    appVersion: "3.0.20260709152130"
+    version: "3.0.20260709152130"
+  - apiVersion: v2
+    created: 2026-07-06T21:50:30.239307660Z
+    description: A Helm chart to deploy the standalone Anacredit application
+    digest: f408e0435557179d7e215152e07fa815fbb8137a3f150efd0543a311d21b34b5
+    name: SDV-bperanacredit-office-chart
+    urls:
+    - local://SDV-bperanacredit-office-chart-3.0.20260703152135.tgz
+    type: application
+    appVersion: "3.0.20260703152135"
+    version: "3.0.20260703152135"
+  - apiVersion: v2
+    created: 2026-05-27T16:38:16.341068396Z
+    description: A Helm chart to deploy the standalone Anacredit application
+    digest: 417dc0b7b05bf16ef9d1ec5103ffbcce3f82c757ab71bd738c16438cdec65762
+    name: SDV-bperanacredit-office-chart
+    urls:
+    - local://SDV-bperanacredit-office-chart-3.0.20260527154018.tgz
+    type: application
+    appVersion: "3.0.20260527154018"
+    version: "3.0.20260527154018"
+  - apiVersion: v2
+    created: 2026-05-22T15:06:56.070508514Z
+    description: A Helm chart to deploy the standalone Anacredit application
+    digest: 210c169e0edd26c41a6aeaa369913f902328bd8c53b38625f8aa9134a112d193
+    name: SDV-bperanacredit-office-chart
+    urls:
+    - local://SDV-bperanacredit-office-chart-3.0.20260522151913.tgz
+    type: application
+    appVersion: "3.0.20260522151913"
+    version: "3.0.20260522151913"
+  - apiVersion: v2
+    created: 2026-01-15T14:30:00.337115544Z
+    description: Helm chart per il deploy su OpenShift di Tomcat
+    digest: a2474de840280b9a6858485da7aa3f535b8909e5f49ae20a3db4220c6ab07f6e
+    name: SDV-bperanacredit-office-chart
+    urls:
+    - local://SDV-bperanacredit-office-chart-3.0.2.tgz
+    version: "3.0.2"
+  - apiVersion: v2
+    created: 2026-01-14T17:41:13.131365888Z
+    description: Helm chart per il deploy su OpenShift di Tomcat
+    digest: 10ca4065996be9b61f48f666a2cc1edf883a61e0e1260eb274ab1da61558e1f3
+    name: SDV-bperanacredit-office-chart
+    urls:
+    - local://SDV-bperanacredit-office-chart-3.0.1.tgz
+    version: "3.0.1"
+  SDV-bperremarkweb-office-chart:
+  - apiVersion: v2
+    created: 2026-07-23T13:46:29.061772205Z
+    description: A Helm chart to deploy remarkweb to Kubernetes
+    digest: e61a07dc4a1f7ee621baf4163be5152f799ea0e3b5725793cd4cb04adbc4937f
+    name: SDV-bperremarkweb-office-chart
+    urls:
+    - local://SDV-bperremarkweb-office-chart-8.5.20260722131260.tgz
+    type: application
+    appVersion: "8.5.20260722131260"
+    version: "8.5.20260722131260"
+  - apiVersion: v2
+    created: 2026-07-16T22:20:02.215372901Z
+    description: A Helm chart to deploy remarkweb to Kubernetes
+    digest: 45e2dd827a21ec8389df95861de2f1ffb3f308a509ba30b2873971a350556a34
+    name: SDV-bperremarkweb-office-chart
+    urls:
+    - local://SDV-bperremarkweb-office-chart-8.5.20260714122960.tgz
+    type: application
+    appVersion: "8.5.20260714122960"
+    version: "8.5.20260714122960"
+  - apiVersion: v2
+    created: 2026-07-10T11:37:49.965126556Z
+    description: A Helm chart to deploy remarkweb to Kubernetes
+    digest: c777371f4c68158c525f0efe992a874825b1ceda9bd8e7b25bea50b386336198
+    name: SDV-bperremarkweb-office-chart
+    urls:
+    - local://SDV-bperremarkweb-office-chart-8.5.20260710113512.tgz
+    type: application
+    appVersion: "8.5.20260710113512"
+    version: "8.5.20260710113512"
+  - apiVersion: v2
+    created: 2026-07-07T12:16:25.148020399Z
+    description: A Helm chart to deploy remarkweb to Kubernetes
+    digest: 5c09e12c144ed3980c43dfd7817b8d610461971e46656bc9184211706df57556
+    name: SDV-bperremarkweb-office-chart
+    urls:
+    - local://SDV-bperremarkweb-office-chart-8.5.20260707114824.tgz
+    type: application
+    appVersion: "8.5.20260707114824"
+    version: "8.5.20260707114824"
+  - apiVersion: v2
+    created: 2026-07-06T21:51:22.279750066Z
+    description: A Helm chart to deploy remarkweb to Kubernetes
+    digest: 98487b92dac519d82ffcb02d35892f9f065cb7da44f74a1d25bef2c5b51b9c8d
+    name: SDV-bperremarkweb-office-chart
+    urls:
+    - local://SDV-bperremarkweb-office-chart-8.5.20260701154550.tgz
+    type: application
+    appVersion: "8.5.20260701154550"
+    version: "8.5.20260701154550"
+  - apiVersion: v2
+    created: 2026-06-25T08:26:11.463409172Z
+    description: A Helm chart to deploy remarkweb to Kubernetes
+    digest: dec4b6ed015aa72e0b76f6ab95b0d4c60f81f07719d1e301611fb233d665fef2
+    name: SDV-bperremarkweb-office-chart
+    urls:
+    - local://SDV-bperremarkweb-office-chart-8.5.20260623152146.tgz
+    type: application
+    appVersion: "8.5.20260623152146"
+    version: "8.5.20260623152146"
+  - apiVersion: v2
+    created: 2026-06-18T14:13:03.452057842Z
+    description: A Helm chart to deploy remarkweb to Kubernetes
+    digest: cf1262b4b9a810c6b7c36fc264f6a0d591947610cc47471f1047a6ab26ed77e0
+    name: SDV-bperremarkweb-office-chart
+    urls:
+    - local://SDV-bperremarkweb-office-chart-8.5.20260618153418.tgz
+    type: application
+    appVersion: "8.5.20260618153418"
+    version: "8.5.20260618153418"
+  - apiVersion: v2
+    created: 2026-06-17T12:25:42.375859238Z
+    description: A Helm chart to deploy remarkweb to Kubernetes
+    digest: 3e658067009ff898bf538f6f55ded5c50b82dd1b9aae502cf7a0fcf0985a1b8c
+    name: SDV-bperremarkweb-office-chart
+    urls:
+    - local://SDV-bperremarkweb-office-chart-8.5.20260617124534.tgz
+    type: application
+    appVersion: "8.5.20260617124534"
+    version: "8.5.20260617124534"
+  - apiVersion: v2
+    created: 2026-06-12T17:35:56.275509029Z
+    description: A Helm chart to deploy remarkweb to Kubernetes
+    digest: 507fd62728d11f4c8dfdff81922d68366f4354a1ca397d98ab9a36020c0e2ab2
+    name: SDV-bperremarkweb-office-chart
+    urls:
+    - local://SDV-bperremarkweb-office-chart-8.5.20260612174724.tgz
+    type: application
+    appVersion: "8.5.20260612174724"
+    version: "8.5.20260612174724"
+  - apiVersion: v2
+    created: 2026-06-10T12:42:28.686368745Z
+    description: A Helm chart to deploy remarkweb to Kubernetes
+    digest: ff9ec6837e17357c1fdd8f517948820a8c0674c0ec3a52ca751d38cccd7146ac
+    name: SDV-bperremarkweb-office-chart
+    urls:
+    - local://SDV-bperremarkweb-office-chart-8.4.20260528152650.tgz
+    type: application
+    appVersion: "8.4.20260528152650"
+    version: "8.4.20260528152650"
+  - apiVersion: v2
+    created: 2026-05-22T13:43:38.767784442Z
+    description: A Helm chart to deploy remarkweb to Kubernetes
+    digest: 89404b31b5c916da63bcd845e1ea26bab71bb3dc730037f96b9789f3ebefbd9b
+    name: SDV-bperremarkweb-office-chart
+    urls:
+    - local://SDV-bperremarkweb-office-chart-8.4.20260522141222.tgz
+    type: application
+    appVersion: "8.4.20260522141222"
+    version: "8.4.20260522141222"
+  - apiVersion: v2
+    created: 2026-05-21T17:34:32.794566908Z
+    description: A Helm chart to deploy remarkweb to Kubernetes
+    digest: c2a48437c2bb2c7544375ff50eed16a1cd4b1a2b08f0a0f3e0b774390f8dc332
+    name: SDV-bperremarkweb-office-chart
+    urls:
+    - local://SDV-bperremarkweb-office-chart-8.4.20260521191260.tgz
+    type: application
+    appVersion: "8.4.20260521191260"
+    version: "8.4.20260521191260"
+  - apiVersion: v2
+    created: 2026-05-13T17:26:18.440761456Z
+    description: A Helm chart to deploy remarkweb to Kubernetes
+    digest: 27e4b5ae2b6097fee7474b37bf5844c927bef22bff406c998a90276a38ec6a95
+    name: SDV-bperremarkweb-office-chart
+    urls:
+    - local://SDV-bperremarkweb-office-chart-8.3.20260513160160.tgz
+    type: application
+    appVersion: "8.3.20260513160160"
+    version: "8.3.20260513160160"
+  - apiVersion: v2
+    created: 2026-05-09T06:57:44.338126294Z
+    description: A Helm chart to deploy remarkweb to Kubernetes
+    digest: 1559ddac6c6dac2c01ce7531fddefdb1b664652332366966a04282e95a5a8f51
+    name: SDV-bperremarkweb-office-chart
+    urls:
+    - local://SDV-bperremarkweb-office-chart-8.2.20260506150060.tgz
+    type: application
+    appVersion: "8.2.20260506150060"
+    version: "8.2.20260506150060"
+  - apiVersion: v2
+    created: 2026-05-05T12:43:49.559039019Z
+    description: A Helm chart to deploy remarkweb to Kubernetes
+    digest: 2e982790aece90d895e72f6c863024e206c5ace462483fb4871663135d24002f
+    name: SDV-bperremarkweb-office-chart
+    urls:
+    - local://SDV-bperremarkweb-office-chart-8.2.20260424124550.tgz
+    type: application
+    appVersion: "8.2.20260424124550"
+    version: "8.2.20260424124550"
+  - apiVersion: v2
+    created: 2025-12-10T14:57:44.497295855Z
+    description: A Helm chart to deploy remarkweb to Kubernetes
+    digest: 35d82dd0633883d63b4435487975c3a2fcedd7ac65bcc125b6a6db2a5bca2b45
+    name: SDV-bperremarkweb-office-chart
+    urls:
+    - local://SDV-bperremarkweb-office-chart-1.0.0.tgz
+    type: application
+    appVersion: "version_placeholder"
+    version: "1.0.0"
+  SDV-bperportal-office-chart:
+  - apiVersion: v2
+    created: 2026-02-03T17:35:45.640300327Z
+    description: A Helm chart to deploy grace portal to Kubernetes
+    digest: 0c82a2b66efe348db69a287af75848edf6c6f2ffec6613a2ffe228fef546108a
+    name: SDV-bperportal-office-chart
+    urls:
+    - local://SDV-bperportal-office-chart-1.0.1.tgz
+    type: application
+    appVersion: "1.0.20260202172702"
+    version: "1.0.1"
+  - apiVersion: v2
+    created: 2025-12-18T11:43:18.147257793Z
+    description: A Helm chart to deploy grace portal to Kubernetes
+    digest: 283f39b14caa8704910f0147539b600a701d85e6e13d4cf7e14f1158bab191ed
+    name: SDV-bperportal-office-chart
+    urls:
+    - local://SDV-bpergrace-portal-chart-1.0.0.tgz
+    type: application
+    appVersion: "version_placeholder"
+    version: "1.0.0"
+  SDV-bperwikidbpuma-office-chart:
+  - apiVersion: v2
+    created: 2026-06-22T17:13:30.729299635Z
+    description: A Helm chart to deploy wikidbpuma to Kubernetes
+    digest: 6f4c76c671344e500c26426aab3a5b5f05f34fe2fb8a53b3dd4d60b2159d4674
+    name: SDV-bperwikidbpuma-office-chart
+    urls:
+    - local://SDV-bperwikidbpuma-office-chart-2.0.20260618114823.tgz
+    type: application
+    appVersion: "2.0.20260618114823"
+    version: "2.0.20260618114823"
+  - apiVersion: v2
+    created: 2026-06-08T10:31:07.044759775Z
+    description: A Helm chart to deploy wikidbpuma to Kubernetes
+    digest: b347cffa603929b8223bfa625a858264b07ff189705e0a80aca4464ee13f697a
+    name: SDV-bperwikidbpuma-office-chart
+    urls:
+    - local://SDV-bperwikidbpuma-office-chart-2.0.20260608111538.tgz
+    type: application
+    appVersion: "2.0.20260608111538"
+    version: "2.0.20260608111538"
+  - apiVersion: v2
+    created: 2026-06-05T15:40:58.378738766Z
+    description: A Helm chart to deploy wikidbpuma to Kubernetes
+    digest: 0c4105fd4997b9d7a38fc44eedb9ef0f2e215e82383d7160bd259248992bb7b1
+    name: SDV-bperwikidbpuma-office-chart
+    urls:
+    - local://SDV-bperwikidbpuma-office-chart-2.0.20260605151138.tgz
+    type: application
+    appVersion: "2.0.20260605151138"
+    version: "2.0.20260605151138"
+  - apiVersion: v2
+    created: 2026-06-05T18:20:05.902525316Z
+    description: A Helm chart to deploy wikidbpuma to Kubernetes
+    digest: e4089db4d1b150f8608f358e7f325f34b03c1837938abff17fd2a260f16ccd96
+    name: SDV-bperwikidbpuma-office-chart
+    urls:
+    - local://SDV-bperwikidbpuma-office-chart-2.0.20260522173938.tgz
+    type: application
+    appVersion: "2.0.20260522173938"
+    version: "2.0.20260522173938"
+  - apiVersion: v2
+    created: 2026-05-21T07:11:22.547729892Z
+    description: A Helm chart to deploy wikidbpuma to Kubernetes
+    digest: e27c927c3e426352fcf7e4cd59da9733ba272882cfbe7b901e5531fad92f5e30
+    name: SDV-bperwikidbpuma-office-chart
+    urls:
+    - local://SDV-bperwikidbpuma-office-chart-2.0.20260519161126.tgz
+    type: application
+    appVersion: "2.0.20260519161126"
+    version: "2.0.20260519161126"
+  - apiVersion: v2
+    created: 2026-05-20T11:40:51.023299566Z
+    description: A Helm chart to deploy wikidbpuma to Kubernetes
+    digest: 03bd30cdf91d6a08f833ccc659a1c9d1d517914257a37d9062b006607e6ad350
+    name: SDV-bperwikidbpuma-office-chart
+    urls:
+    - local://SDV-bperwikidbpuma-office-chart-2.0.20260403122606.tgz
+    type: application
+    appVersion: "2.0.20260403122606"
+    version: "2.0.20260403122606"
+  - apiVersion: v2
+    created: 2026-04-02T10:55:09.919111147Z
+    description: A Helm chart to deploy wikidbpuma to Kubernetes
+    digest: c304db1aeac62fe1368e1b98f8828e18c0e476e5ea0f750a75dde22da3f2ed7f
+    name: SDV-bperwikidbpuma-office-chart
+    urls:
+    - local://SDV-bperwikidbpuma-office-chart-2.0.20260331150811.tgz
+    type: application
+    appVersion: "2.0.20260331150811"
+    version: "2.0.20260331150811"
+  - apiVersion: v2
+    created: 2026-03-20T16:21:38.547414519Z
+    description: A Helm chart to deploy wikidbpuma to Kubernetes
+    digest: e52cd116cf22690a6ff4a9e0e41d5fb42f6bebab5a0192031d9c03c585a05e48
+    name: SDV-bperwikidbpuma-office-chart
+    urls:
+    - local://SDV-bperwikidbpuma-office-chart-1.2.20260320130715.tgz
+    type: application
+    appVersion: "1.2.20260320130715"
+    version: "1.2.20260320130715"
+  - apiVersion: v2
+    created: 2026-03-16T16:31:09.374528635Z
+    description: A Helm chart to deploy wikidbpuma to Kubernetes
+    digest: 827aee01bca2f977e6fba16c6922515eaf5c87dc9769bda63bc5488183203e90
+    name: SDV-bperwikidbpuma-office-chart
+    urls:
+    - local://SDV-bperwikidbpuma-office-chart-1.2.20260313011215.tgz
+    type: application
+    appVersion: "1.2.20260313011215"
+    version: "1.2.20260313011215"
+  - apiVersion: v2
+    created: 2026-02-16T14:24:53.573029470Z
+    description: A Helm chart to deploy wikidbpuma to Kubernetes
+    digest: 18aef5beb82cbad3236d43d9a5c197459d03ff89e7c8aa73efacbc39117c8b87
+    name: SDV-bperwikidbpuma-office-chart
+    urls:
+    - local://SDV-bperwikidbpuma-office-chart-1.0.32.tgz
+    type: application
+    appVersion: "version_placeholder"
+    version: "1.0.32"
+  - apiVersion: v2
+    created: 2025-12-11T10:12:06.288668082Z
+    description: A Helm chart to deploy wikidbpuma to Kubernetes
+    digest: a45d4514d893a54411e35b0445e0ad105251aabbd2dd7e5659185cdb161a1593
+    name: SDV-bperwikidbpuma-office-chart
+    urls:
+    - local://SDV-bperwikidbpuma-office-chart-1.0.0.tgz
+    type: application
+    appVersion: "version_placeholder"
+    version: "1.0.0"
+  SDV-remark-office-chart:
+  - apiVersion: v2
+    created: 2025-12-11T13:44:00.276453379Z
+    description: A Helm chart to deploy remarkweb to Kubernetes
+    digest: 30f1ede802847e7db6e9c125625cc06a1b4d79df689c861905f10856e33ce3dc
+    name: SDV-remark-office-chart
+    urls:
+    - local://SDV-remark-office-chart-1.0.0.tgz
+    type: application
+    appVersion: "version_placeholder"
+    version: "1.0.0"
+  SDV-bperremark-office-chart:
+  - apiVersion: v2
+    created: 2026-06-05T17:41:38.254269608Z
+    description: A Helm chart to deploy remarkweb to Kubernetes
+    digest: f4292a7bde2fdd8bee37b4248c1441cf40fdc6db7988a163243e15f9719b59d6
+    name: SDV-bperremark-office-chart
+    urls:
+    - local://SDV-bperremark-office-chart-8.4.20260528152650.tgz
+    type: application
+    appVersion: "8.4.20260528152650"
+    version: "8.4.20260528152650"
+  - apiVersion: v2
+    created: 2026-05-22T14:40:01.618029665Z
+    description: A Helm chart to deploy remarkweb to Kubernetes
+    digest: bbe6c58305c9ae00c37bb6d04c86915d5c06aa90021ee37c31622739c970c65d
+    name: SDV-bperremark-office-chart
+    urls:
+    - local://SDV-bperremark-office-chart-8.4.20260522141222.tgz
+    type: application
+    appVersion: "8.4.20260522141222"
+    version: "8.4.20260522141222"
+  - apiVersion: v2
+    created: 2026-05-21T17:54:31.131210593Z
+    description: A Helm chart to deploy remarkweb to Kubernetes
+    digest: 1e4cfc463c608c66619bdfc724fe5d1c1a7abb6ff1f1b539e405588a83723347
+    name: SDV-bperremark-office-chart
+    urls:
+    - local://SDV-bperremark-office-chart-8.4.20260521191260.tgz
+    type: application
+    appVersion: "8.4.20260521191260"
+    version: "8.4.20260521191260"
+  - apiVersion: v2
+    created: 2026-05-13T17:28:31.544891640Z
+    description: A Helm chart to deploy remarkweb to Kubernetes
+    digest: f3412cfaa09177502fff750c19caca93a365e62556bb2a3fbe9bacc3fe12b6da
+    name: SDV-bperremark-office-chart
+    urls:
+    - local://SDV-bperremark-office-chart-8.3.20260513160160.tgz
+    type: application
+    appVersion: "8.3.20260513160160"
+    version: "8.3.20260513160160"
+  - apiVersion: v2
+    created: 2026-05-09T07:00:26.453565476Z
+    description: A Helm chart to deploy remarkweb to Kubernetes
+    digest: ddec1578957a41affb6ff2db97fafa5bf058421a9d039e87ae9bb8ba1a1affb6
+    name: SDV-bperremark-office-chart
+    urls:
+    - local://SDV-bperremark-office-chart-8.2.20260506150060.tgz
+    type: application
+    appVersion: "8.2.20260506150060"
+    version: "8.2.20260506150060"
+  - apiVersion: v2
+    created: 2026-04-29T12:42:44.125918065Z
+    description: A Helm chart to deploy remarkweb to Kubernetes
+    digest: 6d6170bdc3394629f62e56ef610e97176693caa2ee15562773c3186ebfb93187
+    name: SDV-bperremark-office-chart
+    urls:
+    - local://SDV-bperremark-office-chart-8.2.20260424124550.tgz
+    type: application
+    appVersion: "8.2.20260424124550"
+    version: "8.2.20260424124550"
+  - apiVersion: v2
+    created: 2026-04-22T07:50:46.719163939Z
+    description: A Helm chart to deploy remarkweb to Kubernetes
+    digest: c33d1c91ac0e1e91039253f47e61e7396abc1a7e0f96cda8114e94345d4ad575
+    name: SDV-bperremark-office-chart
+    urls:
+    - local://SDV-bperremark-office-chart-8.1.20260330170201.tgz
+    type: application
+    appVersion: "8.1.20260330170201"
+    version: "8.1.20260330170201"
+  - apiVersion: v2
+    created: 2026-03-16T15:37:06.274247903Z
+    description: A Helm chart to deploy remarkweb to Kubernetes
+    digest: 49f65d0ff13525882e1604fe71034aae4f06fa0fe93c727a8f8f4442c319a676
+    name: SDV-bperremark-office-chart
+    urls:
+    - local://SDV-bperremark-office-chart-8.0.20260227120626.tgz
+    type: application
+    appVersion: "8.0.20260227120626"
+    version: "8.0.20260227120626"
+  - apiVersion: v2
+    created: 2026-02-18T09:54:34.823395138Z
+    description: A Helm chart to deploy remarkweb to Kubernetes
+    digest: 7dc006b996149f94357767d06c63839fcbcaa68499edb389685d35dd19333281
+    name: SDV-bperremark-office-chart
+    urls:
+    - local://SDV-bperremark-office-chart-7.3.20260217165580.tgz
+    type: application
+    appVersion: "7.3.20260217165580"
+    version: "7.3.20260217165580"
+  - apiVersion: v2
+    created: 2026-02-02T11:33:00.631886463Z
+    description: A Helm chart to deploy remarkweb to Kubernetes
+    digest: e6c361f8a07a3c0a00b5808012523483959977ac12c59e60cb39663e095a7cf2
+    name: SDV-bperremark-office-chart
+    urls:
+    - local://SDV-bperremark-office-chart-7.3.20260129141214.tgz
+    type: application
+    appVersion: "7.3.20260129141214"
+    version: "7.3.20260129141214"
+  - apiVersion: v2
+    created: 2026-02-03T08:49:51.925773179Z
+    description: A Helm chart to deploy remarkweb to Kubernetes
+    digest: 91cf9b3a2a277d7a2aae620f287612484df3505718f68ae7bc224e90e3e73c12
+    name: SDV-bperremark-office-chart
+    urls:
+    - local://SDV-bperremark-office-chart-1.0.1.tgz
+    type: application
+    appVersion: "7.3.20260202150351"
+    version: "1.0.1"
+  - apiVersion: v2
+    created: 2026-02-13T09:01:44.229734804Z
+    description: A Helm chart to deploy remarkweb to Kubernetes
+    digest: 9e30b6b01f5d93aeeea3112bb651bb78eade1e116e41956111328cab746f5bcd
+    name: SDV-bperremark-office-chart
+    urls:
+    - local://SDV-bperremark-office-chart-1.0.0.tgz
+    type: application
+    appVersion: "version_placeholder"
+    version: "1.0.0"
+  SDV-bperdfe-office-chart:
+  - apiVersion: v2
+    created: 2025-12-12T09:14:09.180455292Z
+    description: Helm chart per il deploy su OpenShift di Tomcat
+    digest: 84a4ec4a216132edbc5d8bb18e87f017a1bd7ce31da8507e1748992b95295348
+    name: SDV-bperdfe-office-chart
+    urls:
+    - local://SDV-bperdfe-office-chart-3.0.3.tgz
+    version: "3.0.3"
+  SDV-dashboard-office-chart:
+  - apiVersion: v2
+    created: 2026-05-13T10:45:35.901565940Z
+    description: A Helm chart to deploy grace dashboard to Kubernetes
+    digest: 5d67eec4e9525f2228c445d67cdffe4740e584a9c939a4c8d03f339936dde64d
+    name: SDV-dashboard-office-chart
+    urls:
+    - local://SDV-dashboard-office-chart-1.6.20260413163449.tgz
+    type: application
+    appVersion: "1.6.20260413163449"
+    version: "1.6.20260413163449"
+  - apiVersion: v2
+    created: 2026-03-17T13:55:41.349742918Z
+    description: A Helm chart to deploy grace dashboard to Kubernetes
+    digest: 7ca5d4e2543476a6d850e91bd7cc8755bf751a1ccd2ee145d24ec07fc1642488
+    name: SDV-dashboard-office-chart
+    urls:
+    - local://SDV-dashboard-office-chart-1.5.20260317110156.tgz
+    type: application
+    appVersion: "1.5.20260317110156"
+    version: "1.5.20260317110156"
+  - apiVersion: v2
+    created: 2026-01-23T10:41:11.725744761Z
+    description: A Helm chart to deploy grace dashboard to Kubernetes
+    digest: 61284ddcad09d2df9d603d65253a1c10a275d72089700a24c1416b1182ebcc87
+    name: SDV-dashboard-office-chart
+    urls:
+    - local://SDV-dashboard-office-chart-1.5.20260120104815.tgz
+    type: application
+    appVersion: "1.5.20260120104815"
+    version: "1.5.20260120104815"
+  SDV-remarkweb-office-chart:
+  - apiVersion: v2
+    created: 2026-02-02T11:21:01.274036715Z
+    description: A Helm chart to deploy remarkweb to Kubernetes
+    digest: 99582bd266d76363631e727d254fec0b167b652ec17a25c9cff1f530df4cf979
+    name: SDV-remarkweb-office-chart
+    urls:
+    - local://SDV-remarkweb-office-chart-7.3.20260129141214.tgz
+    type: application
+    appVersion: "7.3.20260129141214"
+    version: "7.3.20260129141214"
+  SDV-bper-sisbabdg-office-chart:
+  - apiVersion: v2
+    created: 2026-02-04T16:22:32.434853228Z
+    description: Helm chart per il deploy su OpenShift di Tomcat
+    digest: 1d08fc559fc37196d1c8db1a09fd956d4b5df57b6523d6ba387930fdc1f62e25
+    name: SDV-bper-sisbabdg-office-chart
+    urls:
+    - local://SDV-bper-sisbabdg-office-chart-4.0.12.tgz
+    version: "4.0.12"
+  SDV-bper-mode-office-chart:
+  - apiVersion: v2
+    created: 2026-02-11T11:32:59.354421375Z
+    description: Helm chart per il deploy su OpenShift di Tomcat
+    digest: c976c64e9717032d4bbc866477962bc953baf1d0cb01b93970094823e49ec5f8
+    name: SDV-bper-mode-office-chart
+    urls:
+    - local://SDV-bper-mode-office-chart-2.0.0.tgz
+    version: "2.0.0"
+  SDV-bperrfebdg-office-chart:
+  - apiVersion: v2
+    created: 2026-07-06T21:53:07.858717651Z
+    description: A Helm chart to deploy the standalone RFEBBDG application
+    digest: db0b27e263dcf444e5b416790e80dab23e95330510c8cb0236b0697ef4b974ba
+    name: SDV-bperrfebdg-office-chart
+    urls:
+    - local://SDV-bperrfebdg-office-chart-3.1.20260703152018.tgz
+    type: application
+    appVersion: "3.1.20260703152018"
+    version: "3.1.20260703152018"
+  - apiVersion: v2
+    created: 2026-05-12T17:48:50.430748145Z
+    description: A Helm chart to deploy the standalone RFEBBDG application
+    digest: 1bad1f5d96c88acb2ad5b3d81551edd961c654e69cfc7b35cbfd03a4dfcb0ba9
+    name: SDV-bperrfebdg-office-chart
+    urls:
+    - local://SDV-bperrfebdg-office-chart-3.1.20260512111516.tgz
+    type: application
+    appVersion: "3.1.20260512111516"
+    version: "3.1.20260512111516"
+  - apiVersion: v2
+    created: 2026-04-30T15:35:44.172930140Z
+    description: A Helm chart to deploy the standalone RFEBBDG application
+    digest: fb7066170d601fd7ee6ba7be7e8b6a06eff43d6a6833a516eef7354e5f884e7c
+    name: SDV-bperrfebdg-office-chart
+    urls:
+    - local://SDV-bperrfebdg-office-chart-3.1.20260430105250.tgz
+    type: application
+    appVersion: "3.1.20260430105250"
+    version: "3.1.20260430105250"
+  - apiVersion: v2
+    created: 2026-04-29T12:52:35.711540164Z
+    description: A Helm chart to deploy the standalone RFEBBDG application
+    digest: d8eb62764c1d0cbbb76943652c9ef94f1bab94eaaaff3e3cd6a86fec1a4867d8
+    name: SDV-bperrfebdg-office-chart
+    urls:
+    - local://SDV-bperrfebdg-office-chart-3.1.20260427123120.tgz
+    type: application
+    appVersion: "3.1.20260427123120"
+    version: "3.1.20260427123120"
+  - apiVersion: v2
+    created: 2026-04-21T08:17:36.136806429Z
+    description: A Helm chart to deploy the standalone RFEBBDG application
+    digest: 3416582a19e390354516995a74a5a1afd88c34ebec9f745b6c720819fc6dfc2a
+    name: SDV-bperrfebdg-office-chart
+    urls:
+    - local://SDV-bperrfebdg-office-chart-3.1.20260420183006.tgz
+    type: application
+    appVersion: "3.1.20260420183006"
+    version: "3.1.20260420183006"
+  SDV-bpergrace-portal-office-chart:
+  - apiVersion: v2
+    created: 2026-06-15T12:33:30.937561699Z
+    description: A Helm chart to deploy grace portal to Kubernetes
+    digest: 8fdccf4d1fa4e2b5fca20ec27a888b293369219ab69ec0db0408d6e0ad0ba88b
+    name: SDV-bpergrace-portal-office-chart
+    urls:
+    - local://SDV-bpergrace-portal-office-chart-1.2.20260615141159.tgz
+    type: application
+    appVersion: "1.2.20260615141159"
+    version: "1.2.20260615141159"
+  - apiVersion: v2
+    created: 2026-06-12T10:53:14.721222497Z
+    description: A Helm chart to deploy grace portal to Kubernetes
+    digest: 73ce2f1bc55e48d0651e31de32aad302d47fdba0ccb12953c2d21a2fa6457f9b
+    name: SDV-bpergrace-portal-office-chart
+    urls:
+    - local://SDV-bpergrace-portal-office-chart-1.2.20260612112627.tgz
+    type: application
+    appVersion: "1.2.20260612112627"
+    version: "1.2.20260612112627"
+  - apiVersion: v2
+    created: 2026-05-21T12:31:12.804316876Z
+    description: A Helm chart to deploy grace portal to Kubernetes
+    digest: 84af0214cd5f919c50604f24c97c3fb3441a3d55bb831a48a217e866dc1ec073
+    name: SDV-bpergrace-portal-office-chart
+    urls:
+    - local://SDV-bpergrace-portal-office-chart-1.2.20260521135914.tgz
+    type: application
+    appVersion: "1.2.20260521135914"
+    version: "1.2.20260521135914"
+  - apiVersion: v2
+    created: 2026-05-13T09:50:32.180558537Z
+    description: A Helm chart to deploy grace portal to Kubernetes
+    digest: 09950743e30dc465058723119e837218403a7a8cbc7a3d0e47814466bc149068
+    name: SDV-bpergrace-portal-office-chart
+    urls:
+    - local://SDV-bpergrace-portal-office-chart-1.2.20260512154600.tgz
+    type: application
+    appVersion: "1.2.20260512154600"
+    version: "1.2.20260512154600"
+  - apiVersion: v2
+    created: 2026-05-05T15:14:33.835824628Z
+    description: A Helm chart to deploy grace portal to Kubernetes
+    digest: 244e763d9700fbd3a6e2b0e9a804824e0a29bc77808fcb1e9a3d83f8b60af5ec
+    name: SDV-bpergrace-portal-office-chart
+    urls:
+    - local://SDV-bpergrace-portal-office-chart-1.2.20260417190206.tgz
+    type: application
+    appVersion: "1.2.20260417190206"
+    version: "1.2.20260417190206"
+  SDV-bpermode-office-chart-:
+  - apiVersion: v2
+    created: 2026-05-06T11:55:18.525844901Z
+    description: A Helm chart to deploy the standalone MODEBDG application
+    digest: 1d2b6159a6e80ba2d9d40b453f11d18dc750149d7dfc0ee905e90474fe820fa0
+    name: SDV-bpermode-office-chart-
+    urls:
+    - local://SDV-bpermode-office-chart-2.1.20260504162219.tgz
+    type: application
+    appVersion: "2.1.20260504162219"
+    version: "2.1.20260504162219"
+  SDV-bperdashboard-office-chart:
+  - apiVersion: v2
+    created: 2026-07-06T21:50:58.592471603Z
+    description: A Helm chart to deploy grace dashboard to Kubernetes
+    digest: 42ef8add989a96a9210e7a52a6822f427e974c586c625ca4e84c666d72da5c9f
+    name: SDV-bperdashboard-office-chart
+    urls:
+    - local://SDV-bperdashboard-office-chart-1.8.20260703100715.tgz
+    type: application
+    appVersion: "1.8.20260703100715"
+    version: "1.8.20260703100715"
+  - apiVersion: v2
+    created: 2026-05-13T10:08:51.212785771Z
+    description: A Helm chart to deploy grace dashboard to Kubernetes
+    digest: 710db9fff449737b4b7c45d871a2adc2d1bc35b4a5a31200241c899c8cc0e772
+    name: SDV-bperdashboard-office-chart
+    urls:
+    - local://SDV-bperdashboard-office-chart-1.6.20260413163449.tgz
+    type: application
+    appVersion: "1.6.20260413163449"
+    version: "1.6.20260413163449"
+  - apiVersion: v2
+    created: 2026-06-03T17:20:40.076715492Z
+    description: A Helm chart to deploy grace dashboard to Kubernetes
+    digest: e45c5a5e2af154ef57ae7a8e2f90bbd7af4ee5ecfe07af1f13801cb011710efe
+    name: SDV-bperdashboard-office-chart
+    urls:
+    - local://SDV-bperdashboard-office-chart-1.5.20260317110156.tgz
+    type: application
+    appVersion: "1.5.20260317110156"
+    version: "1.5.20260317110156"
+  SDV-bpermodebdg-office-chart:
+  - apiVersion: v2
+    created: 2026-06-10T16:22:09.180313837Z
+    description: A Helm chart to deploy the standalone MODEBDG application
+    digest: 6eeba71c8bcbf424072a14a2e9c76f5be29fde0bfe192a4bf2076a8ff8a3512b
+    name: SDV-bpermodebdg-office-chart
+    urls:
+    - local://SDV-bpermodebdg-office-chart-2.1.20260605110124.tgz
+    type: application
+    appVersion: "2.1.20260605110124"
+    version: "2.1.20260605110124"
+  - apiVersion: v2
+    created: 2026-05-19T13:37:18.230156608Z
+    description: A Helm chart to deploy the standalone MODEBDG application
+    digest: ffcbe32a972753790ae27fa0518d36e76287bfee6efa8dc0f1bdd18b62267323
+    name: SDV-bpermodebdg-office-chart
+    urls:
+    - local://SDV-bpermodebdg-office-chart-2.1.20260519141721.tgz
+    type: application
+    appVersion: "2.1.20260519141721"
+    version: "2.1.20260519141721"
+generated: 2026-07-28T15:08:06.794992822Z

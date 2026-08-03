@@ -1,0 +1,1 @@
+python_jenkins==1.8.0

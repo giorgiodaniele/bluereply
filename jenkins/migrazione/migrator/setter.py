@@ -131,7 +131,7 @@ def edit_scm_params(node: ET.Element, record: dict):
     prop = node.find(XmlPath.SCM_URL)
 
     if prop is not None:
-        prop.text = "https://gitlab.gbbper.priv/" "Devops/pipeline-build.git"
+        prop.text = "https://gitlab.gbbper.priv/Devops/pipeline-build.git"
 
     prop = node.find(XmlPath.SCRIPT_PATH)
 
