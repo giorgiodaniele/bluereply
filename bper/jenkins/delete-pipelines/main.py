@@ -1,4 +1,6 @@
-#!/usr/bin/env python3
+#
+# Use this script to delete all pipelines that are listed in resources.csv
+#
 
 import csv
 import os

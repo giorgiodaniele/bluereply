@@ -8,60 +8,76 @@ services:
       - "50000:50000"
     volumes:
       - jenkins_data:/var/jenkins_home
-      - /var/run/docker.sock:/var/run/docker.sock
     networks:
       - toolchain_net
 
-  sonarqube:
-    image:          sonarqube:latest
-    container_name: sonarqube
-    restart:        unless-stopped
-    depends_on:
-      - sonar_db
-    ports:
-      - "9000:9000"
-    environment:
-      SONAR_JDBC_URL:      jdbc:postgresql://sonar_db:5432/sonar
-      SONAR_JDBC_USERNAME: sonar
-      SONAR_JDBC_PASSWORD: sonar
-    ulimits:
-      nofile:
-        soft: 65536
-        hard: 65536
-    volumes:
-      - sonarqube_data:/opt/sonarqube/data
-      - sonarqube_extensions:/opt/sonarqube/extensions
-      - sonarqube_logs:/opt/sonarqube/logs
-    networks:
-      - toolchain_net
-
-  sonar_db:
-    image:          postgres:15
-    container_name: sonar_db
+  gitea:
+    image:          gitea/gitea:latest
+    container_name: gitea
     restart:        unless-stopped
     environment:
-      POSTGRES_USER:     sonar
-      POSTGRES_PASSWORD: sonar
-      POSTGRES_DB:       sonar
+      USER_UID: 1000
+      USER_GID: 1000
+      GITEA__database__DB_TYPE: sqlite3
+    ports:
+      - "3000:3000"
+      - "2222:22"
     volumes:
-      - sonar_db_data:/var/lib/postgresql/data
+      - gitea_data:/data
     networks:
       - toolchain_net
 
-  dependency-track:
-    image:          dependencytrack/bundled
-    container_name: dependency-track
-    restart:        unless-stopped
-    mem_limit:      8g
-    ports:
-      - "9010:8080"
-    volumes:
-      - dependencytrack_data:/data
-    networks:
-      - toolchain_net
+  # sonarqube:
+  #   image:          sonarqube:latest
+  #   container_name: sonarqube
+  #   restart:        unless-stopped
+  #   depends_on:
+  #     - sonar_db
+  #   ports:
+  #     - "9000:9000"
+  #   environment:
+  #     SONAR_JDBC_URL:      jdbc:postgresql://sonar_db:5432/sonar
+  #     SONAR_JDBC_USERNAME: sonar
+  #     SONAR_JDBC_PASSWORD: sonar
+  #   ulimits:
+  #     nofile:
+  #       soft: 65536
+  #       hard: 65536
+  #   volumes:
+  #     - sonarqube_data:/opt/sonarqube/data
+  #     - sonarqube_extensions:/opt/sonarqube/extensions
+  #     - sonarqube_logs:/opt/sonarqube/logs
+  #   networks:
+  #     - toolchain_net
+
+  # sonar_db:
+  #   image:          postgres:15
+  #   container_name: sonar_db
+  #   restart:        unless-stopped
+  #   environment:
+  #     POSTGRES_USER:     sonar
+  #     POSTGRES_PASSWORD: sonar
+  #     POSTGRES_DB:       sonar
+  #   volumes:
+  #     - sonar_db_data:/var/lib/postgresql/data
+  #   networks:
+  #     - toolchain_net
+
+  # dependency-track:
+  #   image:          dependencytrack/bundled
+  #   container_name: dependency-track
+  #   restart:        unless-stopped
+  #   mem_limit:      8g
+  #   ports:
+  #     - "9010:8080"
+  #   volumes:
+  #     - dependencytrack_data:/data
+  #   networks:
+  #     - toolchain_net
 
 volumes:
   jenkins_data:
+  gitea_data:
   sonarqube_data:
   sonarqube_extensions:
   sonarqube_logs:

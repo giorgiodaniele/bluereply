@@ -1,25 +1,29 @@
-#!/usr/bin/env python3
-__author__      = "Giorgio Daniele Luppina"
-__version__     = "1.0"
-__description__ = "Eliminate any job configured in a Jenkins server."
+#
+# Use this script to delete any job configured in a Jenkins server.
+# USE THIS SCRIPT AT YOUR OWN RISK
+#
 
-import argparse
-import logging
+#!/usr/bin/env python3
+
+import csv
 import os
 import sys
+import logging
+import dotenv
 import jenkins
+import datetime
+import xml.etree.ElementTree as ET
 from   concurrent.futures import ThreadPoolExecutor, as_completed
 
-LOG_FORMAT  = "%(asctime)s [%(levelname)s] %(name)s: %(message)s"
-DATE_FORMAT = "%Y-%m-%d %H:%M:%S"
-MAX_WORKERS = 10
+dotenv.load_dotenv()
 
-def config_logger(level=logging.INFO):
-    logging.basicConfig(level=level, format=LOG_FORMAT, datefmt=DATE_FORMAT)
+JENKINS_URL      = os.getenv("JENKINS_URL")
+JENKINS_USERNAME = os.getenv("JENKINS_USERNAME")
+JENKINS_PASSWORD = os.getenv("JENKINS_PASSWORD")
 
-logger = logging.getLogger("jenkins.delete")
+# Configure logging
+logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)-8s %(name)s - %(message)s")
 
-os.environ["REQUESTS_CA_BUNDLE"] = "res/bperROOTCA.crt"
 
 def delete(url, username, password):
 
@@ -27,7 +31,7 @@ def delete(url, username, password):
         client = jenkins.Jenkins(url, username=username, password=password, timeout=60)
         jobs   = client.get_all_jobs()
 
-        logger.info(f"In {url} ci sono {len(jobs)} job Jenkins da cancellare...")
+        logging.info(f"There are {len(jobs)} jobs in Jenkins to be deleted ... ")
 
         def delete_job(job: jenkins._Job):
             fullname  = job.get("fullname", "")
@@ -48,18 +52,18 @@ def delete(url, username, password):
             #     return
             try:
                 client.delete_job(fullname)
-                logger.info(f"Eliminazione {fullname} completata!")
+                logging.info(f"Eliminated {fullname}")
             except Exception as e:
-                logger.error(f"Eliminazione {fullname}: {e}")
+                logging.error(f"Could not delete {fullname}: {e}")
 
         def process_batch(jobs: list[jenkins._Job]):
-            with ThreadPoolExecutor(max_workers=MAX_WORKERS) as pool:
+            with ThreadPoolExecutor(max_workers=10) as pool:
                 futures = [pool.submit(delete_job, job) for job in jobs]
                 for future in as_completed(futures):
                     try:
                         future.result()
                     except Exception as e:
-                        logger.error(e)
+                        logging.error(e)
 
         #
         # Select all jobs which are folders
@@ -73,34 +77,34 @@ def delete(url, username, password):
         # pipelines = [job for job in jobs if not job.get("_class", "").endswith("Folder")]
         # process_batch(pipelines)
 
-        logger.info("Pulizia completata con successo!")
+        logging.info(f"All jobs have been completed")
 
     except Exception as e:
         raise RuntimeError(e)
 
+def connect_server(url: str, username: str, password: str):
+    try:
+        return jenkins.Jenkins(url=url, username=username, password=password)
+    except Exception as e:
+        return f"Failed to connect to Jenkins: {e}"
+
 def main():
 
-    parser = argparse.ArgumentParser()
+    server = None
+    server = connect_server(url=JENKINS_URL, username=JENKINS_USERNAME, password=JENKINS_PASSWORD)
 
-    parser.add_argument("--url",      required=True)
-    parser.add_argument("--username", required=True)
-    parser.add_argument("--password", required=True)
-
-    args = parser.parse_args()
-
-    confirm = input("Questa operazione è distruttiva. Digitare YES per continuare: ").strip()
-    if confirm != "YES":
-        sys.exit(0)
-
-    try:
-        delete(url=args.url, username=args.username, password=args.password)
-        logger.info("Eliminazione completata!")
-    except Exception as e:
-        logger.error(e)
+    if isinstance(server, str):
+        logging.error(server)
         sys.exit(1)
 
-if __name__ == "__main__":
-    config_logger()
-    main()
+    #
+    # Ask for confirmation
+    #
+    answer = input(f"This operation is distructive and it will delete anything configured in {JENKINS_URL}. Type YES to continue: ").strip()
+    if answer != "YES":
+        sys.exit(0)
 
-# python delete.py --username <> --password <> --url http://172.16.63.239/jenkins/
+    delete(url=JENKINS_URL, username=JENKINS_USERNAME, password=JENKINS_PASSWORD)
+
+if __name__ == "__main__":
+    main()

@@ -1,8 +1,16 @@
+#
+# Using the output from dump-pipelines, this script will validate (according BPER standards)
+# which pipelines are considered fine to be migrated within new toolchain
+#
+
 import csv
 import fnmatch
+import dotenv
+import os
 
+dotenv.load_dotenv()
 
-INPUT_FILE      = r"..\dump\output\pipelines_20260729084244.csv"
+INPUT_FILE      = os.getenv("PIPELINES_TO_PROCESS")
 PATTERNS_FILE   = r"resources\patterns.txt"
 REDMINE_TICKETS = r"resources\redmine_tickets.csv"
 VALIDATED_FILE  = r"validated.csv"
@@ -63,6 +71,8 @@ JENKINS_FILE_MAPPING = {
     "Jenkins_generic_sast_from_JSON"                  : "Jenkins_generic_QA",
 }
 
+# List all suffixes which are considered to be valid. If a pipeline does not have any of these suffixes, 
+# it will be discarded 
 valid_suffixes = (
     "-master",
     "-develop",
@@ -79,12 +89,14 @@ valid_suffixes = (
     "upload-chart",
 )
 
+# List all prefixes which are considered to be valid. If a pipeline does not have any of these prefixes,
+# it will be discarded
 valid_prefixes = (
     "standalone-",
     "BATCH",
 )
 
-
+# Register statistics about validated pipelines and discarded pipelines
 validated  = []
 discarded  = []
 statistics = {

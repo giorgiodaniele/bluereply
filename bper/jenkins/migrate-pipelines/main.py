@@ -12,12 +12,15 @@ from   concurrent.futures import ThreadPoolExecutor, as_completed
 
 dotenv.load_dotenv()
 
-JENKINS_URL      = os.getenv("JENKINS_URL")
-JENKINS_USERNAME = os.getenv("JENKINS_USERNAME")
-JENKINS_PASSWORD = os.getenv("JENKINS_PASSWORD")
-OUTPUT_FOLDER    = f"output_{datetime.datetime.now().strftime('%Y%m%d%H%M%S')}"
+JENKINS_SOURCE_URL           = os.getenv("JENKINS_SOURCE_URL")
+JENKINS_SOURCE_USERNAME      = os.getenv("JENKINS_SOURCE_USERNAME")
+JENKINS_SOURCE_PASSWORD      = os.getenv("JENKINS_SOURCE_PASSWORD")
+JENKINS_DESTINATION_URL      = os.getenv("JENKINS_DESTINATION_URL")
+JENKINS_DESTINATION_USERNAME = os.getenv("JENKINS_DESTINATION_USERNAME")
+JENKINS_DESTINATION_PASSWORD = os.getenv("JENKINS_DESTINATION_PASSWORD")
+OUTPUT_FOLDER                = f"output_{datetime.datetime.now().strftime('%Y%m%d%H%M%S')}"
 
-# Import custom certificate
+# Configure certificate
 os.environ["REQUESTS_CA_BUNDLE"] = "../../bperROOTCA.crt"
 
 # Configure logging
@@ -64,7 +67,7 @@ def edit_xml_config(fullname: str, xml: ET.Element, out: str, record: dict):
         if name.text == "gitlabGroup":
             default = parameter.find("defaultValue")
             if default is not None:
-                default.text = "FOO"
+                default.text = record["gitlab_group"]
 
     # Edit gitlabPproject and edit the value
     for parameter in list(parameters):
@@ -75,7 +78,7 @@ def edit_xml_config(fullname: str, xml: ET.Element, out: str, record: dict):
             name.text = "gitlabProject"
             default   = parameter.find("defaultValue")
             if default is not None:
-                default.text = "FOO"
+                default.text = record["gitlab_project"]
 
     # Edit gitlabUrl and edit the value
     for parameter in list(parameters):
@@ -85,7 +88,7 @@ def edit_xml_config(fullname: str, xml: ET.Element, out: str, record: dict):
         if name.text == "gitlabUrl":
             default = parameter.find("defaultValue")
             if default is not None:
-                default.text = "FOO"
+                default.text = "https://gitlab.gbbper.priv"
 
     # Add JVMAdditionalParameters
     jenkinsfile = record.get("jenkinsfile_name", "")
@@ -93,13 +96,13 @@ def edit_xml_config(fullname: str, xml: ET.Element, out: str, record: dict):
     if found:
         parameter = ET.SubElement(parameters, "hudson.model.StringParameterDefinition")
         ET.SubElement(parameter, "name").text         = "JVMAdditionalParameters"
-        ET.SubElement(parameter, "defaultValue").text = "AAA"
+        ET.SubElement(parameter, "defaultValue").text = ""
         ET.SubElement(parameter, "description").text  = "Additional JVM Parameters"
 
     # Add applicationCode as hidden parameter
     parameter = ET.SubElement(parameters, "com.wangyin.parameter.WHideParameterDefinition")
-    ET.SubElement(parameter, "name").text         = "AAA"
-    ET.SubElement(parameter, "defaultValue").text = "AAAA"
+    ET.SubElement(parameter, "name").text         = "applicationCode"
+    ET.SubElement(parameter, "defaultValue").text = record["application_code"]
     ET.SubElement(parameter, "description").text  = "Application Code associated with the pipeline"
 
     # Edit JDKs - it can be either a single value or a list of choices
@@ -121,10 +124,10 @@ def edit_xml_config(fullname: str, xml: ET.Element, out: str, record: dict):
     # Edit the name of the script file
     script = xml.find(".//scriptPath")
     if script is not None:
-        script.text = "Jenkinsfile"
+        script.text = record["jenkinsfile_name"]
 
     # Edit the name of the branch
-    branch = xml.find(".//scriptPath")
+    branch = xml.find(".//branches/hudson.plugins.git.BranchSpec/name")
     if branch is not None:
         branch.text = "*/new-master"
 
@@ -150,8 +153,84 @@ def process_job(server: jenkins.Jenkins, job: dict, pipelines: dict):
         if record is not None:
             edit_xml_config(fullname, xml, OUTPUT_FOLDER, record)
 
-def import_to_destination(server: jenkins.Jenkins):
-    pass
+def import_to_destination(files: list, server: jenkins.Jenkins, folder: str):
+
+    folders   = []
+    pipelines = []
+
+    for file in files:
+        filename: str = os.path.basename(file)
+        if filename.startswith("__IS_A_FOLDER__") and not os.path.isdir(file):
+            folders.append(file)
+        elif os.path.isdir(file):
+            for item in os.listdir(file):
+                path = os.path.join(file, item)
+                if os.path.isfile(path) and path.endswith(".xml"):
+                    pipelines.append(path)
+    try:
+        jobs = {job['fullname'] for job in server.get_jobs()}
+    except Exception:
+        jobs = set()
+
+    #
+    # Helper function to create folder jobs
+    #
+    def __generate_folder(file):
+        fullname = os.path.relpath(file, folder)
+        fullname = os.path.splitext(fullname)[0].replace("__IS_A_FOLDER__", "").replace("\\", "/")
+        try:
+            with open(file, 'r') as file:
+                config = file.read()
+        except Exception:
+            return
+
+        if fullname in jobs:
+            logging.info(f"Cartella {fullname} esiste già...")
+            return
+
+        try:
+            server.create_job(fullname, config)
+            logging.info(f"Cartella {fullname} creata!")
+        except Exception:
+            pass
+
+    #
+    # Helper function to create pipeline jobs
+    #
+    def __generate_pipeline(file):
+        rel_path = os.path.relpath(file, folder)
+        fullname = rel_path[:-4].replace("__", "/").replace("\\", "/")
+        try:
+            with open(file, 'r') as file:
+                config = file.read()
+        except Exception:
+            return
+
+        if fullname in jobs:
+            logging.info(f"Pipeline {fullname} esiste già...")
+            return
+
+        try:
+            server.create_job(fullname, config)
+            logging.info(f"Pipeline {fullname} creata!")
+        except Exception:
+            pass
+
+    #
+    # Create folders in parallel
+    #
+    with ThreadPoolExecutor(max_workers=10) as executor:
+        futures = [executor.submit(__generate_folder, f) for f in sorted(folders)]
+        for _ in as_completed(futures):
+            continue
+
+    #
+    # Create pipelines in parallel
+    #
+    with ThreadPoolExecutor(max_workers=10) as executor:
+        futures = [executor.submit(__generate_pipeline, f) for f in sorted(pipelines)]
+        for _ in as_completed(futures):
+            continue
 
 def connect_server(url: str, username: str, password: str):
     try:
@@ -161,7 +240,9 @@ def connect_server(url: str, username: str, password: str):
 
 def main():
 
-    server: jenkins.Jenkins = connect_server(url=JENKINS_URL, username=JENKINS_USERNAME, password=JENKINS_PASSWORD)
+    # Connect to source Jenkins server
+    server = None
+    server = connect_server(url=JENKINS_SOURCE_URL, username=JENKINS_SOURCE_USERNAME, password=JENKINS_SOURCE_PASSWORD)
 
     if isinstance(server, str):
         logging.error(server)
@@ -171,7 +252,7 @@ def main():
 
     # Read from disk all pipelines
     pipelines = {}
-    with open("resources/pipelines.csv", "r", newline="", encoding="utf-8") as f:
+    with open("validated.csv", "r", newline="", encoding="utf-8") as f:
         reader = csv.DictReader(f)
         for record in reader:
             pipelines[record["fullname"]] = record
@@ -186,6 +267,17 @@ def main():
             except Exception:
                 logging.exception("Failed to process Jenkins job")
 
+    logging.info("#################################################################")
+    logging.info(f"Importing jenkins jobs  ...")
+    logging.info("#################################################################")
+
+    # Connect destination Jenkins server
+    server = None
+    server = connect_server(url=JENKINS_DESTINATION_URL, username=JENKINS_DESTINATION_USERNAME, password=JENKINS_DESTINATION_PASSWORD)
+
+    # Migrate to destination Jenkins server
+    files  = [os.path.join(OUTPUT_FOLDER, f) for f in os.listdir(OUTPUT_FOLDER)]
+    import_to_destination(files=files, server=server, folder=OUTPUT_FOLDER)
 
 if __name__ == "__main__":
     main()

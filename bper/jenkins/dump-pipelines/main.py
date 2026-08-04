@@ -1,4 +1,6 @@
-#!/usr/bin/env python3
+#
+# Use this script to generate a summary of all pipelines configured
+#
 
 import csv
 import os
