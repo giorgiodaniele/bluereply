@@ -103,6 +103,8 @@ resource "aws_internet_gateway" "main" {
 
 #
 # DEFINE THE ROUTE TABLE THE VPC IS GOING TO USE
+# ANY SUBNET WITH THIS ROUTING TABLE IS GOING TO
+# BE CLASSIFIED AS """""" PUBLIC """"""""
 #
 
 resource "aws_route_table" "public" {
@@ -147,51 +149,70 @@ resource "aws_route_table_association" "snet_c" {
 
 resource "aws_security_group" "ssh" {
   name        = "lab-ssh-sg"
-  description = "Allow SSH access to Linux EC2 instances"
+  description = "Allow SSH and ICMP access to Linux EC2 instances"
   vpc_id      = aws_vpc.main.id
 
-    #
-    # CREATE INGRESS RULE
-    # ALLOW INBOUND TCP TRAFFIC ON PORT 22 (SSH)
-    # FROM THE AWS-MANAGED EC2 INSTANCE CONNECT PREFIX LIST
-    #
-
-  ingress {
-    description     = "SSH from EC2 Instance Connect"
-    from_port       = 22
-    to_port         = 22
-    protocol        = "tcp"
-    prefix_list_ids = [
-      data.aws_ec2_managed_prefix_list.ec2_instance_connect.id
-    ]
-  }
-  
-    #
-    # CREATE EGRESS RULE
-    # ALLOW ALL OUTBOUND TRAFFIC TO THE INTERNET
-    #
-
-  egress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
 
   tags = {
-    Name          = "lab-ssh-sg"
-    Environment   = "dev"
-    Application   = "lab"
-    Owner         = "g.luppina@reply.it"
+    Name         = "lab-ssh-sg"
+    Environment  = "dev"
+    Application  = "lab"
+    Owner        = "g.luppina@reply.it"
     Business_Unit = "BLUTIT_IT"
   }
 }
 
-# A SECURITY GROUP IS A STATEFUL FIREWALL WORKING AT THE
-# RESOURCE / ENI LEVEL.
 #
-# A NACL (NETWORK ACCESS CONTROL LIST) IS A STATELESS FIREWALL
-# WORKING AT THE SUBNET LEVEL.
+# INBOUND TRAFFIC 
+#
+
+# Allow SSH from EC2 Instance Connect
+resource "aws_vpc_security_group_ingress_rule" "ssh_instance_connect" {
+  security_group_id = aws_security_group.ssh.id
+
+  description    = "SSH from EC2 Instance Connect"
+  from_port      = 22
+  to_port        = 22
+  ip_protocol    = "tcp"
+  prefix_list_id = data.aws_ec2_managed_prefix_list.ec2_instance_connect.id
+}
+
+# Allow SSH between EC2 instances
+resource "aws_vpc_security_group_ingress_rule" "ssh_between_instances" {
+  security_group_id            = aws_security_group.ssh.id
+  referenced_security_group_id = aws_security_group.ssh.id
+
+  description = "SSH between lab instances"
+  from_port   = 22
+  to_port     = 22
+  ip_protocol = "tcp"
+}
+
+# Allow ICMP between EC2 instances
+resource "aws_vpc_security_group_ingress_rule" "icmp_between_instances" {
+  security_group_id            = aws_security_group.ssh.id
+  referenced_security_group_id = aws_security_group.ssh.id
+
+  from_port   = -1
+  to_port     = -1  
+  description = "ICMP between lab instances"
+  ip_protocol = "icmp"
+}
+
+
+#
+# OUTBOUND TRAFFIC 
+#
+
+
+resource "aws_vpc_security_group_egress_rule" "all_outbound" {
+  security_group_id = aws_security_group.ssh.id
+
+  description = "Allow all outbound traffic"
+  ip_protocol = "-1"
+  cidr_ipv4   = "0.0.0.0/0"
+}
+
 
 #
 # GENERATE EVENTUALLY THE EC2 INSTANCES
