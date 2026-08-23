@@ -18,6 +18,7 @@ data "aws_ssm_parameter" "linux" {
 
 data "aws_region" "current" {}
 
+
 data "aws_ec2_managed_prefix_list" "ec2_instance_connect" {
   name = "com.amazonaws.${data.aws_region.current.region}.ec2-instance-connect"
 }

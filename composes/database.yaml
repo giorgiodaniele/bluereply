@@ -1,0 +1,36 @@
+services:
+  postgres:
+    image:          postgres:11
+    container_name: postgres
+    restart:        unless-stopped
+    environment:
+      POSTGRES_USER:     admin
+      POSTGRES_PASSWORD: adminpassword
+      POSTGRES_DB:       measurements
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - measurements_network
+
+  pgadmin:
+    image:          dpage/pgadmin4:latest
+    container_name: pgadmin
+    restart:        unless-stopped
+    depends_on:
+      - postgres
+    environment:
+      PGADMIN_DEFAULT_EMAIL:    admin@example.com
+      PGADMIN_DEFAULT_PASSWORD: adminpassword
+    ports:
+      - "8080:80"
+    networks:
+      - measurements_network
+
+volumes:
+  postgres_data:
+
+networks:
+  measurements_network:
+    driver: bridge
