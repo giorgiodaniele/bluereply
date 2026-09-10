@@ -1,13 +1,10 @@
-version: "3.9"
-
 services:
 
-  # Access the UI on port 8080
+  # Access the Jenkins UI on port 8080
   jenkins:
     image:          jenkins/jenkins:lts-jdk21
     container_name: jenkins
     restart:        unless-stopped
-    user:           root
     ports:
       - "8080:8080"
       - "50000:50000"
@@ -17,61 +14,61 @@ services:
     networks:
       - ci
 
-  postgres:
-    image:          postgres:16
-    container_name: sonarqube-db
-    restart:        unless-stopped
-    environment:
-      POSTGRES_USER: sonar
-      POSTGRES_PASSWORD: sonar
-      POSTGRES_DB: sonarqube
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-    networks:
-      - ci
+  # PostgreSQL database for SonarQube
+  # postgres:
+  #   image: postgres:16
+  #   container_name: sonarqube-db
+  #   restart: unless-stopped
+  #   environment:
+  #     POSTGRES_USER: sonar
+  #     POSTGRES_PASSWORD: sonar
+  #     POSTGRES_DB: sonarqube
+  #   volumes:
+  #     - postgres_data:/var/lib/postgresql/data
+  #   networks:
+  #     - ci
 
-  # Access the UI on port 9000
-  sonarqube:
-    image:          sonarqube:community
-    container_name: sonarqube
-    restart:        unless-stopped
-    depends_on:
-      - postgres
-    ports:
-      - "9000:9000"
-    environment:
-      SONAR_JDBC_URL:      jdbc:postgresql://postgres:5432/sonarqube
-      SONAR_JDBC_USERNAME: sonar
-      SONAR_JDBC_PASSWORD: sonar
-    volumes:
-      - sonarqube_data:/opt/sonarqube/data
-      - sonarqube_extensions:/opt/sonarqube/extensions
-      - sonarqube_logs:/opt/sonarqube/logs
-    networks:
-      - ci
+  # Access the SonarQube UI on port 9000
+  # sonarqube:
+  #   image: sonarqube:community
+  #   container_name: sonarqube
+  #   restart: unless-stopped
+  #   depends_on:
+  #     - postgres
+  #   ports:
+  #     - "9000:9000"
+  #   environment:
+  #     SONAR_JDBC_URL: jdbc:postgresql://postgres:5432/sonarqube
+  #     SONAR_JDBC_USERNAME: sonar
+  #     SONAR_JDBC_PASSWORD: sonar
+  #   volumes:
+  #     - sonarqube_data:/opt/sonarqube/data
+  #     - sonarqube_extensions:/opt/sonarqube/extensions
+  #     - sonarqube_logs:/opt/sonarqube/logs
+  #   networks:
+  #     - ci
 
-  #
-  # Add Dependency Track bundled
-  #
-  dependencytrack:
-    image:          dependencytrack/bundled:latest
-    container_name: dependencytrack
-    restart:        unless-stopped
-    ports:
-      - "8081:8080"
-    volumes:
-      - dependencytrack_data:/data
-    networks:
-      - ci
+  # Access the Dependency-Track UI on port 8081
+  # dependencytrack:
+  #   image: dependencytrack/bundled:latest
+  #   container_name: dependencytrack
+  #   restart: unless-stopped
+  #   ports:
+  #     - "8081:8080"
+  #   volumes:
+  #     - dependencytrack_data:/data
+  #   networks:
+  #     - ci
 
 volumes:
   jenkins_home:
   jenkins_tools:
-  postgres_data:
-  sonarqube_data:
-  sonarqube_extensions:
-  sonarqube_logs:
-  dependencytrack_data:
+  # postgres_data:
+  # sonarqube_data:
+  # sonarqube_extensions:
+  # sonarqube_logs:
+  # dependencytrack_data:
 
 networks:
   ci:
+    driver: bridge

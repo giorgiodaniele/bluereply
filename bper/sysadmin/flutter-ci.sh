@@ -31,6 +31,65 @@ check_machine() {
 }
 
 #
+# INSTALL BASICS
+#
+install_basics() {
+
+    case "$MACHINE" in
+        mac-x64|mac-arm)
+            brew update
+            brew install \
+                zip \
+                unzip \
+                tar \
+                gzip \
+                bzip2 \
+                xz \
+                git \
+                curl \
+                wget \
+                which \
+                findutils \
+                file \
+                patch \
+                diffutils \
+                make \
+                ruby \
+                ruby-devel
+            ;;
+        linux-x64)
+            #
+            # Assume to use RHEL/CentOS
+            #
+            sudo dnf update  -y
+            sudo dnf install -y \
+                zip \
+                unzip \
+                tar \
+                gzip \
+                bzip2 \
+                xz \
+                git \
+                curl \
+                wget \
+                which \
+                findutils \
+                file \
+                patch \
+                diffutils \
+                make \
+                gcc \
+                gcc-c++ \
+                openssl \
+                openssl-devel \
+                ca-certificates \
+                ruby \
+                ruby-devel
+            ;;
+}
+
+
+#
 # INSTALL JDK
 #
 
@@ -54,10 +113,12 @@ install_jdks() {
     esac
 
     for VERSION in "${JDK_VERSIONS[@]}"; do
-        echo "Installing OpenJDK $VERSION ..."
         mkdir -p "$TOOLS/openjdk/jdk-$VERSION"
-        curl -fL "https://api.adoptium.net/v3/binary/latest/$VERSION/ga/$OS/$ARCH/jdk/hotspot/normal/eclipse" -o "$TMP/jdk-$VERSION.tar.gz"
+
+        url="https://api.adoptium.net/v3/binary/latest/${VERSION}/ga/${OS}/${ARCH}/jdk/hotspot/normal/eclipse"
+        curl -fL "$url" -o "$TMP/jdk-$VERSION.tar.gz"
         tar -xzf "$TMP/jdk-$VERSION.tar.gz" -C "$TOOLS/openjdk/jdk-$VERSION" --strip-components=1
+
     done
 }
 
@@ -88,17 +149,17 @@ install_android_sdk() {
 
     PACKAGES=("platform-tools")
 
-    ANDROID_PLATFORMS=(31 32 33 34 35 36)
+    ANDROID_PLATFORMS=(36)
     for VERSION in "${ANDROID_PLATFORMS[@]}"; do
         PACKAGES+=("platforms;android-$VERSION")
     done
 
-    BUILD_TOOLS=(31.0.0 32.0.0 33.0.2 34.0.0 35.0.0 36.0.0)
+    BUILD_TOOLS=(36.0.0)
     for VERSION in "${BUILD_TOOLS[@]}"; do
         PACKAGES+=("build-tools;$VERSION")
     done
 
-    CMAKE_VERSIONS=(3.22.1 3.31.0)
+    CMAKE_VERSIONS=(3.31.0)
     for VERSION in "${CMAKE_VERSIONS[@]}"; do
         PACKAGES+=("cmake;$VERSION")
     done
@@ -117,7 +178,7 @@ install_android_sdk() {
 
 install_flutter_sdk() {
 
-    FLUTTER_VERSION="3.47.0"
+    FLUTTER_VERSION="3.41.9"
 
     case "$MACHINE" in
         mac-x64)
@@ -133,7 +194,8 @@ install_flutter_sdk() {
             FLUTTER_ARCHIVE="flutter_linux_${FLUTTER_VERSION}-stable.tar.xz"
             ;;
     esac
-
+    
+    # Download the archive
     curl -fL "https://storage.googleapis.com/flutter_infra_release/releases/stable/$FLUTTER_OS/$FLUTTER_ARCHIVE" -o "$TMP/flutter"
 
     case "$FLUTTER_ARCHIVE" in
@@ -144,38 +206,35 @@ install_flutter_sdk() {
             tar -xf "$TMP/flutter" -C "$TOOLS"
             ;;
     esac
-
-    ln -sf "$TOOLS/flutter/bin/flutter" "$BIN/flutter"
-    ln -sf "$TOOLS/flutter/bin/dart"    "$BIN/dart"
 }
 
 #
 # INSTALL NODE
 #
 
-install_node() {
+# install_node() {
 
-    NODE_VERSION="22.14.0"
+#     NODE_VERSION="22.14.0"
 
-    case "$MACHINE" in
-        mac-x64)
-            NODE_OS="darwin"
-            NODE_ARCH="x64"
-            ;;
-        mac-arm)
-            NODE_OS="darwin"
-            NODE_ARCH="arm64"
-            ;;
-        linux-x64)
-            NODE_OS="linux"
-            NODE_ARCH="x64"
-            ;;
-    esac
+#     case "$MACHINE" in
+#         mac-x64)
+#             NODE_OS="darwin"
+#             NODE_ARCH="x64"
+#             ;;
+#         mac-arm)
+#             NODE_OS="darwin"
+#             NODE_ARCH="arm64"
+#             ;;
+#         linux-x64)
+#             NODE_OS="linux"
+#             NODE_ARCH="x64"
+#             ;;
+#     esac
 
-    mkdir -p "$TOOLS/node"
-    curl -fL "https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-$NODE_OS-$NODE_ARCH.tar.gz" -o "$TMP/node.tar.gz"
-    tar -xzf "$TMP/node.tar.gz" -C "$TOOLS/node" --strip-components=1
-}
+#     mkdir -p "$TOOLS/node"
+#     curl -fL "https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-$NODE_OS-$NODE_ARCH.tar.gz" -o "$TMP/node.tar.gz"
+#     tar -xzf "$TMP/node.tar.gz" -C "$TOOLS/node" --strip-components=1
+# }
 
 #
 # INSTALL SONAR SCANNER
@@ -204,7 +263,7 @@ install_sonar_scanner() {
     rm   -rf "$TOOLS/sonar-scanner"
     unzip -q "$TMP/sonar-scanner.zip" -d "$TMP"
     mv       "$TMP/sonar-scanner-${SONAR_SCANNER_VERSION}-${SONAR_OS}-${SONAR_ARCH}" "$TOOLS/sonar-scanner"
-    ln   -sf "$TOOLS/sonar-scanner/bin/sonar-scanner" "$BIN/sonar-scanner"
+    # ln   -sf "$TOOLS/sonar-scanner/bin/sonar-scanner" "$BIN/sonar-scanner"
 }
 
 #
@@ -271,115 +330,27 @@ install_maven() {
 
     curl -fL "https://archive.apache.org/dist/maven/maven-3/$MAVEN_VERSION/binaries/$MAVEN_ARCHIVE" -o "$TMP/maven.tar.gz"
     tar -xzf "$TMP/maven.tar.gz" -C "$TOOLS/maven" --strip-components=1
-    ln   -sf "$TOOLS/maven/bin/mvn" "$BIN/mvn"
+    # ln   -sf "$TOOLS/maven/bin/mvn" "$BIN/mvn"
 }
 
-#
-# INSTALL COCOAPODS
-#
-
-#
-# INSTALL RUBY
-#
-
-install_ruby() {
-
-    RUBY_VERSION="3.3.7"
-
-    case "$MACHINE" in
-        mac-x64)
-            RUBY_OS="darwin"
-            RUBY_ARCH="x86_64"
-            ;;
-        mac-arm)
-            RUBY_OS="darwin"
-            RUBY_ARCH="arm64"
-            ;;
-        linux-x64)
-            echo "Skipping Ruby: only required for CocoaPods on macOS."
-            return
-            ;;
-    esac
-
-
-
-    mkdir -p "$TOOLS/ruby"
-    curl -fL "https://github.com/ruby/ruby-builder/releases/download/toolcache-ruby-${RUBY_VERSION}/ruby-${RUBY_VERSION}-${RUBY_OS}-${RUBY_ARCH}.tar.gz" -o "$TMP/ruby.tar.gz"
-    tar -xzf "$TMP/ruby.tar.gz" -C "$TOOLS/ruby" --strip-components=1
-
-    ln -sf "$TOOLS/ruby/bin/ruby" "$BIN/ruby"
-    ln -sf "$TOOLS/ruby/bin/gem"  "$BIN/gem"
-
-    # "$BIN/ruby" --version
-    # "$BIN/gem"  --version
-}
-
-#
-# INSTALL COCOAPODS
-#
-
-install_cocoapods() {
-
-    case "$MACHINE" in
-        mac-x64|mac-arm)
-            ;;
-        linux-x64)
-            echo "Skipping CocoaPods: iOS tooling requires macOS/Xcode."
-            return
-            ;;
-    esac
-
-    COCOAPODS_VERSION="1.16.2"
-
-    export GEM_HOME="$TOOLS/cocoapods"
-    export GEM_PATH="$GEM_HOME"
-    export PATH="$TOOLS/ruby/bin:$GEM_HOME/bin:$PATH"
-
-    mkdir -p "$GEM_HOME"
-
-    curl -fL   "https://rubygems.org/downloads/cocoapods-${COCOAPODS_VERSION}.gem" -o "$TMP/cocoapods.gem"
-    "$BIN/gem"  install "$TMP/cocoapods.gem" --install-dir "$GEM_HOME" --no-document
-    ln -sf      "$GEM_HOME/bin/pod" "$BIN/pod"
-
-    # "$BIN/pod" --version
-}
-
-#
-# MAIN
-#
 
 check_machine
 
 
-# rm   -rf "$TOOLS"
+rm   -rf "$TOOLS"
 mkdir -p "$TOOLS" "$BIN" "$TMP"
 
-# install_jdks            
-# install_android_sdk     
-# install_flutter_sdk     
-# install_node            
-# install_sonar_scanner   
-# install_cdxgen          
-# install_jfrog           
-# install_maven    
-install_ruby       
-install_cocoapods
+install_basics
+install_jdks
+install_android_sdk
+install_flutter_sdk
+install_node
+install_sonar_scanner
+install_cdxgen
+install_jfrog
+install_maven
 
-#
-# CLEANUP
-#
 
 step     "CLEANING UP ..."
 rm   -rf "$TMP"
 chown -R  tcuser:tcuser "$TOOLS"
-
-#
-# DONE
-#
-
-step "FLUTTER TOOLCHAIN INSTALLATION COMPLETE"
-
-# Please, rember to set the ANDROID_HOME and
-# the ANDROID_SDK_ROOT environment variables
-# export ANDROID_HOME="$TOOLS/android-sdk"
-# export ANDROID_SDK_ROOT="$TOOLS/android-sdk"
