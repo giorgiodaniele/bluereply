@@ -1,0 +1,8 @@
+DigitalWealth/be-eventi-posizione
+DigitalWealth/be-orchestratore-commons
+DigitalWealth/be-orchestratore-dispositiva
+DigitalWealth/be-orchestratore-dispositiva-soap-rest
+DigitalWealth/be-orchestratore-posizione
+DigitalWealth/be-semaforo
+DigitalWealth/bh-commons
+DigitalWealth/bh-portafoglio

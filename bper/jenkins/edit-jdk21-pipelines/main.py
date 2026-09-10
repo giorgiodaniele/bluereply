@@ -40,7 +40,7 @@ def add_jvm_additional_params_param(parameters):
 
 def perform_migration(job_name):
     pipelineSuffixPairs = [(None, "-old"), (None, "-develop"), (None, "-release"), (None, "-master")]
-    
+
     try:
         for i, (xml,suffix) in enumerate(pipelineSuffixPairs):
            if (suffix != "-old"):
@@ -53,7 +53,7 @@ def perform_migration(job_name):
         else:
             print(f"{e}")
             print(f"[ERROR] Required job does not exist. Aborting migration!")
-        return None   
+        return None
 
     develop_xml, _  = pipelineSuffixPairs[1]
     if develop_xml is not None:
@@ -75,7 +75,7 @@ def perform_migration(job_name):
             else:
                 print("[ERROR] Pipeline path not found. Non-standard pipeline detected, aborting process!")
                 return None
-            
+
             if parameters is None:
                 parameters_property = root.find("./properties/hudson.model.ParametersDefinitionProperty")
                 if parameters_property is None:
@@ -84,7 +84,7 @@ def perform_migration(job_name):
 
             add_or_replace_jdk_version_param(parameters)
             add_jvm_additional_params_param(parameters)
-            
+
             # Convert the modified XML back to a string
             xml = ET.tostring(root, encoding='utf-8').decode('utf-8')
             pipelineSuffixPairs[i] = (xml, suffix)
@@ -105,7 +105,7 @@ def perform_migration(job_name):
             except jenkins.JenkinsException as e:
                 print(f"An error occurred while creating/reconfiguring job '{job_name}{suffix}': {e}")
                 return None
-            
+
 with open("pipelines_to_migrate.txt", "r") as fp:
     for line in fp:
         job_name = line.strip()
@@ -114,7 +114,7 @@ with open("pipelines_to_migrate.txt", "r") as fp:
             full_job_name = f"{group}/{name}"
         else:
             full_job_name = job_name
-        
+
         try:
             job_info = server.get_job_info(full_job_name+"-old")
             print(f"[WARN] Job '{full_job_name}-old' exists. Skipping migration.")
