@@ -14,12 +14,8 @@ dotenv.load_dotenv()
 JENKINS_URL      = os.getenv("JENKINS_URL")
 JENKINS_USERNAME = os.getenv("JENKINS_USERNAME")
 JENKINS_PASSWORD = os.getenv("JENKINS_PASSWORD")
-INPUT_FILE       = "resources.csv"
+INPUT_FILE       = "pipelines_to_delete.csv"
 
-# Import custom certificate
-os.environ["REQUESTS_CA_BUNDLE"] = "../../bperROOTCA.crt"
-
-# Configure logging
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)-8s %(name)s - %(message)s")
 
 def connect_server(url: str, username: str, password: str) -> jenkins.Jenkins | str:
@@ -41,16 +37,9 @@ def main():
 
     resources = read_resources(INPUT_FILE)
     for resource in resources:
-        #
-        # Considering each resource / compoent, Jenkins is configured to have as many pipelines as
-        # the number of branches the component has
-        #
-        resource_branched = [f"{resource}-{branch}" for branch in ("master", "develop", "release")]
+        resource_branched = [f"{resource}-{branch}" for branch in ("master", "develop", "release", "it", "lab", "main")]
         for resource_branched in resource_branched:
             try:
-                # Check if project exists. In case of the project not existing, 
-                # Jenkins will throw an exception and nothing will be deleted
-                # If the project exists, it will be deleted
                 server.get_job_info(resource_branched)
                 server.delete_job(resource_branched)
                 logging.info(f"Deleted pipeline job {resource_branched}")

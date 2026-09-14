@@ -208,11 +208,7 @@ def main() -> None:
     ignored_patterns = load_ignored_patterns(PATTERNS_FILE)
     issues           = load_redmine_issues(REDMINE_TICKETS_FILE)
 
-    validated, discarded = process_pipelines(
-        INPUT_FILE,
-        ignored_patterns,
-        issues,
-    )
+    validated, discarded = process_pipelines(INPUT_FILE, ignored_patterns,issues)
 
     with INPUT_FILE.open(newline="", encoding="utf-8") as file:
         fieldnames = csv.DictReader(file).fieldnames or []
