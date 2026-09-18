@@ -28,7 +28,6 @@ logger = logging.getLogger(__name__)
 def connect_to_jenkins() -> jenkins.Jenkins:
     try:
         server = jenkins.Jenkins(url=JENKINS_URL, username=JENKINS_USERNAME, password=JENKINS_PASSWORD) 
-        server.get_whoami()
         return server
     except Exception as e:
         logger.error("Can't connect to Jenkins (%s): %s", JENKINS_URL, e)
@@ -40,9 +39,8 @@ def get_xml_text(e: ET.Element | None) -> str | None:
         return text if text else None
     return None
 
-def inspect_pipeline(xml_str: str, fullname: str) -> dict:
-    root = ET.fromstring(xml_str)
-
+def inspect_pipeline(text: str, fullname: str) -> dict:
+    root   = ET.fromstring(text)
     record = {}
 
     record["fullname"]                = fullname
@@ -84,8 +82,7 @@ def process_pipeline(server: jenkins.Jenkins, pipeline: dict) -> dict | None:
         logger.exception("Failed to process pipeline: %s", name)
         return None
 
-
-def load_regex():
+def load_rgx():
     patterns = []
     with open(PATTERNS_FILE, "r", encoding="utf-8") as f:
         for line in f:
@@ -120,14 +117,16 @@ def save_csv(results: list[dict]) -> None:
         for result in results:
             writer.writerow(result)
 
+
+#
+# MAIN
+#
 def main() -> None:
-    server = connect_to_jenkins()
-    jobs   = server.get_all_jobs()
-
+    server    = connect_to_jenkins()
+    jobs      = server.get_all_jobs()
     pipelines = [ job for job in jobs if job.get("_class") == "org.jenkinsci.plugins.workflow.job.WorkflowJob" ]
-    logger.info("Found %d pipelines", len(pipelines))
+    results   = []
 
-    results = []
     with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
         futures = [ executor.submit(process_pipeline, server, p) for p in pipelines ]
         for future in as_completed(futures):

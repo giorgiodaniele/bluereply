@@ -66,7 +66,7 @@ install_basics() {
                 zip \
                 unzip \
                 tar \
-                gzip \
+                gzip \s
                 bzip2 \
                 xz \
                 git \
@@ -176,9 +176,11 @@ install_android_sdk() {
 # INSTALL FLUTTER
 #
 
-install_flutter_sdk() {
-
-    FLUTTER_VERSION="3.41.9"
+install_flutter_version() {
+    local FLUTTER_VERSION="$1"
+    local FLUTTER_OS
+    local FLUTTER_ARCHIVE
+    local FLUTTER_DIR="$TOOLS/flutter-$FLUTTER_VERSION"
 
     case "$MACHINE" in
         mac-x64)
@@ -193,20 +195,39 @@ install_flutter_sdk() {
             FLUTTER_OS="linux"
             FLUTTER_ARCHIVE="flutter_linux_${FLUTTER_VERSION}-stable.tar.xz"
             ;;
+        *)
+            echo "Unsupported machine: $MACHINE"
+            return 1
+            ;;
     esac
-    
-    # Download the archive
-    curl -fL "https://storage.googleapis.com/flutter_infra_release/releases/stable/$FLUTTER_OS/$FLUTTER_ARCHIVE" -o "$TMP/flutter"
 
+    # Create version-specific directory
+    mkdir -p "$FLUTTER_DIR"
+    curl -fL "https://storage.googleapis.com/flutter_infra_release/releases/stable/$FLUTTER_OS/$FLUTTER_ARCHIVE" -o "$TMP/flutter-$FLUTTER_VERSION"
+
+    # Extract
     case "$FLUTTER_ARCHIVE" in
         *.zip)
-            unzip -q "$TMP/flutter" -d "$TOOLS"
+            unzip -q "$TMP/flutter-$FLUTTER_VERSION" -d "$FLUTTER_DIR"
             ;;
         *.tar.xz)
-            tar -xf "$TMP/flutter" -C "$TOOLS"
+            tar -xf "$TMP/flutter-$FLUTTER_VERSION" -C "$FLUTTER_DIR"
+            ;;
+        *)
+            echo "Unsupported archive: $FLUTTER_ARCHIVE"
+            return 1
             ;;
     esac
+
+    echo "Flutter $FLUTTER_VERSION installed at $FLUTTER_DIR/flutter"
 }
+
+install_flutter_sdk() {
+    install_flutter_version "3.41.9"
+    install_flutter_version "3.47.0"
+}
+
+
 
 #
 # INSTALL NODE

@@ -15,17 +15,16 @@ import jenkins
 
 dotenv.load_dotenv()
 
-
 JENKINS_SOURCE_URL           = os.getenv("JENKINS_SOURCE_URL")
 JENKINS_SOURCE_USERNAME      = os.getenv("JENKINS_SOURCE_USERNAME")
 JENKINS_SOURCE_PASSWORD      = os.getenv("JENKINS_SOURCE_PASSWORD")
 JENKINS_DESTINATION_URL      = os.getenv("JENKINS_DESTINATION_URL")
 JENKINS_DESTINATION_USERNAME = os.getenv("JENKINS_DESTINATION_USERNAME")
 JENKINS_DESTINATION_PASSWORD = os.getenv("JENKINS_DESTINATION_PASSWORD")
-
-OUTPUT_FOLDER = Path(f"output_{datetime.now().strftime('%Y%m%d%H%M%S')}")
-CA_BUNDLE     = "../../bperROOTCA.crt"
-MAX_WORKERS   = 10
+OUTPUT_FOLDER                = Path(f"output_{datetime.now().strftime('%Y%m%d%H%M%S')}")
+CA_BUNDLE                    = "../../bperROOTCA.crt"
+PIPELINES_TO_MIGRATE         = "jenkins_pipelines_20260918_095459_filtered.csv"
+MAX_WORKERS                  = 10
 
 JDKS_MAPPING = {
     "JDK_1.8.0_172_cifratura2048": "openjdk-1.8.0",
@@ -42,27 +41,18 @@ DEPRECATED_PARAMETERS = {
     "JVMAdditionalParameters",
 }
 
-GITLAB_URL = "https://gitlab.gbbper.priv"
 
 
-#
-# Logging
-#
-logging.basicConfig(level=logging.INFO, format="%(asctime)s | %(levelname)-8s | %(message)s", datefmt="%Y-%m-%d %H:%M:%S")
+logging.basicConfig(level=logging.INFO, format="%(asctime)s | %(levelname)-s | %(message)s", datefmt="%Y-%m-%d %H:%M:%S")
 logger = logging.getLogger(__name__)
 
-
-#
-# Jenkins configuration
-#
 
 def connect_to_jenkins(url: str, username: str, password: str) -> jenkins.Jenkins:
     try:
         server = jenkins.Jenkins(url=url, username=username, password=password)
-        server.get_whoami()
         return server
     except Exception:
-        logging.info(f"Can't connect to Jenkins: {url}. Exiting program with error code 1")
+        logging.info(f"Can't connect to Jenkins: {url}. Exiting program with error code 1.")
         sys.exit(1)
 
 
@@ -79,10 +69,8 @@ def save_xml_config(fullname: str, xml: ET.Element, output: Path, is_folder: boo
         file_name = f"{path_elements[-1].replace('/', '__')}.xml"
 
     file_path = output_path / file_name
-
-    tree = ET.ElementTree(xml)
+    tree      = ET.ElementTree(xml)
     tree.write(file_path, encoding="utf-8", xml_declaration=True)
-
 
 def edit_xml_config(fullname: str, xml: ET.Element, output: Path, record: dict) -> None:
 
@@ -91,13 +79,13 @@ def edit_xml_config(fullname: str, xml: ET.Element, output: Path, record: dict) 
     if parameters is None:
         return
 
-    # Reove parameters which are no longer
+    # Remove parameters which are no longer
     for parameter in list(parameters):
         name = parameter.find("name")
         if name is not None and name.text in ["mvnBuild", "mvnUIT", "mvnArtifactDeploy", "JVMAdditionalParameters"]:
             parameters.remove(parameter)
 
-    # Considering the record, replace the name of the gitlabGroup parameter
+    # Fix the value of the gitlabGroup parameter
     for parameter in parameters:
         name = parameter.find("name")
         if name is None:
@@ -105,9 +93,9 @@ def edit_xml_config(fullname: str, xml: ET.Element, output: Path, record: dict) 
         if name.text == "gitlabGroup":
             default = parameter.find("defaultValue")
             if default is not None:
-                default.text = record["gitlab_group"]
+                default.text = record["gitlabGroup"]
 
-    # Considering the record, replace the name of the gitlabProject parameter
+    # Fix the value of the gitlabProject parameter
     for parameter in parameters:
         name = parameter.find("name")
         if name is None:
@@ -116,9 +104,9 @@ def edit_xml_config(fullname: str, xml: ET.Element, output: Path, record: dict) 
             name.text = "gitlabProject"
             default = parameter.find("defaultValue")
             if default is not None:
-                default.text = record["gitlab_project"]
+                default.text = record["gitlabPproject"]
 
-    # Considering the record, replace the name of the gitlabUrl parameter
+    # Fix the value of the gitlabUrl parameter
     for parameter in parameters:
         name = parameter.find("name")
         if name is None:
@@ -128,14 +116,10 @@ def edit_xml_config(fullname: str, xml: ET.Element, output: Path, record: dict) 
             if default is not None:
                 default.text = "https://gitlab.gbbper.priv"
 
+    # A pipeline requires the JVMAdditionalParameters parameter if the jenkinsfile is based on maven
+    requires_jvm_parameters = any(filename in record["jenkinsfileName"] for filename in ("Jenkins_fe", "Jenkins_be", "Jenkins_public", "Jenkins_be_sb3", "Jenkins_be_quarkus"))
 
-    # If the jenkinsfile is based on maven, add the JVMAdditionalParameters parameter. Pipelines which are based
-    # on maven are: Jenkins_be_java, Jenkins_be_sb3, Jenkins_be_quarkus, Jenkins_public_libs, 
-    # Jenkins_docker_slave_quarkus
-    jenkinsfile             = record["jenkinsfile_name"]
-    requires_jvm_parameters = any(token in jenkinsfile for token in ("Jenkins_fe", "Jenkins_be", "Jenkins_public", "Jenkins_be_sb3", "Jenkins_be_quarkus"))
-
-    # Generate the JVMAdditionalParameters parameter if required
+    # Add the JVMAdditionalParameters parameter if required
     if requires_jvm_parameters:
         parameter = ET.SubElement(parameters, "hudson.model.StringParameterDefinition")
         ET.SubElement(parameter, "name").text         = "JVMAdditionalParameters"
@@ -145,39 +129,35 @@ def edit_xml_config(fullname: str, xml: ET.Element, output: Path, record: dict) 
     # Add always the applicationCode parameter
     parameter = ET.SubElement(parameters, "com.wangyin.parameter.WHideParameterDefinition")
     ET.SubElement(parameter, "name").text         = "applicationCode"
-    ET.SubElement(parameter, "defaultValue").text = record["application_code"]
+    ET.SubElement(parameter, "defaultValue").text = record["applicationCode"]
     ET.SubElement(parameter, "description").text  = "Application Code associated with the pipeline"
 
-    # If the jenkinsfile is based on maven, edit the jdkVersion parameter. Add JDKs to the parameter
     if requires_jvm_parameters:
         for parameter in parameters:
             name = parameter.find("name")
             if name is None or name.text != "jdkVersion":
                 continue
-
-            # Single value
             default = parameter.find("defaultValue")
             if default is not None and default.text in JDKS_MAPPING:
                 default.text = JDKS_MAPPING[default.text]
-            # Multiple values
             for choice in parameter.findall(".//string"):
                 if choice.text in JDKS_MAPPING:
                     choice.text = JDKS_MAPPING[choice.text]
             break
 
-    # Fix the name of the Jenkinsfile
+    # Fix the value of the jenkinsfileName parameter
     script = xml.find(".//scriptPath")
     if script is not None:
-        script.text = record["jenkinsfile_name"]
+        script.text = record["jenkinsfileName"]
 
-    # Fix the branch of the Jenkinsfile
+    # Fix the value of the jenkinsfileBranch parameter
     branch = xml.find(".//branches/hudson.plugins.git.BranchSpec/name")
     if branch is not None:
-        branch.text = "*/new-master"
+        branch.text = record["jenkinsfileBranch"]
 
     save_xml_config(fullname=fullname, xml=xml, output=output, is_folder=False)
 
-def process_job(server: jenkins.Jenkins, job: dict, pipelines: dict) -> None:  
+def process_pipeline(server: jenkins.Jenkins, job: dict, pipelines: dict) -> None:  
 
     fullname = job["fullname"]
     xml_text = server.get_job_config(fullname)
@@ -196,60 +176,25 @@ def process_job(server: jenkins.Jenkins, job: dict, pipelines: dict) -> None:
     if xml.tag == "flow-definition":
         record = pipelines.get(fullname)
         if record is not None:
+            logger.info(f"Processing pipeline: {fullname} ...")
             edit_xml_config(fullname=fullname, xml=xml, output=OUTPUT_FOLDER, record=record)
+            logger.info(f"Pipeline {fullname} processed successfully! Exported at {OUTPUT_FOLDER}")
+        else:
+            logger.info(f"Pipeline {fullname} not found in the pipelines to migrate. Skipping...")
 
-
-
-def load_validated_pipelines() -> dict:
+def load_pipelines() -> dict:
     pipelines = {}
-    with open("jenkins_pipelines.csv", "r", newline="", encoding="utf-8") as csvfile:
+    with open(PIPELINES_TO_MIGRATE, "r", newline="", encoding="utf-8") as csvfile:
         reader = csv.DictReader(csvfile)
         for record in reader:
             pipelines[record["fullname"]] = record
     return pipelines
 
-
-def main() -> None:
-
-    os.environ["REQUESTS_CA_BUNDLE"] = CA_BUNDLE
-
-    src           = connect_to_jenkins(url=JENKINS_SOURCE_URL, username=JENKINS_SOURCE_USERNAME, password=JENKINS_SOURCE_PASSWORD)
-    pipelines     = load_validated_pipelines()
-    jobs          = src.get_all_jobs()
-
-    with ThreadPoolExecutor(max_workers=MAX_WORKERS) as e:
-        futures = [e.submit(process_job, src, job, pipelines) for job in jobs]
-        for future in as_completed(futures):
-            try:
-                future.result()
-            except Exception:
-                logger.exception("Failed to process Jenkins job")
-
-    #
-    # Connect to destination Jenkins
-    #
-    # logger.info("#################################################################")
-    # logger.info("Importing Jenkins jobs ...")
-    # logger.info("#################################################################")
-
-    # destination_server = connect_to_jenkins(url=JENKINS_DESTINATION_URL, username=JENKINS_DESTINATION_USERNAME, password=JENKINS_DESTINATION_PASSWORD)
-
-    #
-    # Import jobs
-    #
-    # import_to_destination(output=OUTPUT_FOLDER, server=destination_server)
-
-    # logger.info("Jenkins migration completed successfully")
-
-
-def import_to_destination(output: Path, server: jenkins.Jenkins) -> None:
+def import_pipelines(output: Path, server: jenkins.Jenkins) -> None:
 
     folders   = []
     pipelines = []
 
-    #
-    # Find exported configuration files
-    #
     for file in output.rglob("*.xml"):
 
         if file.name.startswith("__IS_A_FOLDER__"):
@@ -259,9 +204,7 @@ def import_to_destination(output: Path, server: jenkins.Jenkins) -> None:
 
     logger.info("Found %d folders and %d pipelines to import", len(folders), len(pipelines))
 
-    #
-    # Get existing jobs
-    #
+    # Get already existing jobs
     try:
         jobs = {
             job["fullname"]
@@ -272,9 +215,7 @@ def import_to_destination(output: Path, server: jenkins.Jenkins) -> None:
         logger.exception("Failed to retrieve existing Jenkins jobs")
         jobs = set()
 
-    #
-    # Create folder jobs
-    #
+    # Generate folder jobs
     def generate_folder(file: Path) -> None:
 
         relative_path = file.relative_to(output)
@@ -288,7 +229,6 @@ def import_to_destination(output: Path, server: jenkins.Jenkins) -> None:
 
         try:
             config = file.read_text(encoding="utf-8")
-
         except Exception:
             logger.exception("Failed to read folder configuration: %s", file)
             return
@@ -296,53 +236,65 @@ def import_to_destination(output: Path, server: jenkins.Jenkins) -> None:
         try:
             server.create_job(fullname, config)
             logger.info("Folder %s created", fullname)
-
         except Exception:
             logger.exception("Failed to create folder: %s", fullname)
 
-    #
-    # Create pipeline jobs
-    #
+    # Generate pipeline jobs
     def generate_pipeline(file: Path) -> None:
-
-        relative_path = file.relative_to(output)
-        fullname      = str(relative_path.with_suffix(""))
-        fullname      = fullname.replace("\\", "/")
-        fullname      = fullname.replace("__", "/")
-
-        if fullname in jobs:
-            logger.info("Pipeline %s already exists", fullname)
-            return
+        rel_path = file.relative_to(output)
+        fullname = str(rel_path.with_suffix(""))
+        fullname = fullname.replace("\\", "/").replace("__", "/")
 
         try:
             config = file.read_text(encoding="utf-8")
-
         except Exception:
             logger.exception("Failed to read pipeline configuration: %s", file)
             return
 
         try:
-            server.create_job(fullname, config)
-            logger.info("Pipeline %s created", fullname)
+            if server.job_exists(fullname):
+                server.reconfig_job(fullname, config)
+                logger.info("Pipeline %s reconfigured", fullname)
+            else:
+                server.create_job(fullname, config)
+                logger.info("Pipeline %s created", fullname)
 
         except Exception:
-            logger.exception("Failed to create pipeline: %s", fullname)
+            logger.exception("Failed to configure pipeline: %s", fullname)
 
-    #
-    # Create folders in parallel
-    #
+    # Create all folders
     with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
         futures = [executor.submit(generate_folder, file) for file in sorted(folders)]
         for future in as_completed(futures):
             future.result()
 
-    #
-    # Create pipelines in parallel
-    #
+    # Create all pipelines
     with ThreadPoolExecutor(max_workers=MAX_WORKERS) as executor:
         futures = [executor.submit(generate_pipeline, file) for file in sorted(pipelines)]
         for future in as_completed(futures):
             future.result()
 
+
+def main() -> None:
+
+    os.environ["REQUESTS_CA_BUNDLE"] = CA_BUNDLE
+
+    src           = connect_to_jenkins(url=JENKINS_SOURCE_URL, username=JENKINS_SOURCE_USERNAME, password=JENKINS_SOURCE_PASSWORD)
+    dst           = connect_to_jenkins(url=JENKINS_DESTINATION_URL, username=JENKINS_DESTINATION_USERNAME, password=JENKINS_DESTINATION_PASSWORD)
+    pipelines     = load_pipelines()
+    jobs          = src.get_all_jobs()
+
+    with ThreadPoolExecutor(max_workers=MAX_WORKERS) as e:
+        futures = [e.submit(process_pipeline, src, job, pipelines) for job in jobs]
+        for future in as_completed(futures):
+            try:
+                future.result()
+            except Exception:
+                logger.exception("Failed to process Jenkins job")
+    import_pipelines(output=OUTPUT_FOLDER, server=dst)
+
+#
+# MAIN
+#
 if __name__ == "__main__":
     main()
