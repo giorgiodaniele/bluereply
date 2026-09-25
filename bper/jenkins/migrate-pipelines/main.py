@@ -4,6 +4,7 @@ import csv
 import logging
 import os
 import sys
+import argparse
 import xml.etree.ElementTree as ET
 from   concurrent.futures import ThreadPoolExecutor, as_completed
 from   datetime           import datetime
@@ -15,12 +16,6 @@ import jenkins
 
 dotenv.load_dotenv()
 
-JENKINS_SOURCE_URL           = os.getenv("JENKINS_SOURCE_URL")
-JENKINS_SOURCE_USERNAME      = os.getenv("JENKINS_SOURCE_USERNAME")
-JENKINS_SOURCE_PASSWORD      = os.getenv("JENKINS_SOURCE_PASSWORD")
-JENKINS_DESTINATION_URL      = os.getenv("JENKINS_DESTINATION_URL")
-JENKINS_DESTINATION_USERNAME = os.getenv("JENKINS_DESTINATION_USERNAME")
-JENKINS_DESTINATION_PASSWORD = os.getenv("JENKINS_DESTINATION_PASSWORD")
 OUTPUT_FOLDER                = Path(f"output_{datetime.now().strftime('%Y%m%d%H%M%S')}")
 CA_BUNDLE                    = "../../bperROOTCA.crt"
 PIPELINES_TO_MIGRATE         = "jenkins_pipelines_20260918_095459_filtered.csv"
@@ -40,7 +35,6 @@ DEPRECATED_PARAMETERS = {
     "mvnArtifactDeploy",
     "JVMAdditionalParameters",
 }
-
 
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s | %(levelname)-s | %(message)s", datefmt="%Y-%m-%d %H:%M:%S")
@@ -154,6 +148,11 @@ def edit_xml_config(fullname: str, xml: ET.Element, output: Path, record: dict) 
     branch = xml.find(".//branches/hudson.plugins.git.BranchSpec/name")
     if branch is not None:
         branch.text = record["jenkinsfileBranch"]
+        
+    # Fix the value of the URL of the repository
+    url = xml.find(".//scm/userRemoteConfigs/hudson.plugins.git.UserRemoteConfig/url")
+    if url is not None:
+        url.text = record["jenkinsfileRepository"]
 
     save_xml_config(fullname=fullname, xml=xml, output=output, is_folder=False)
 
@@ -274,15 +273,23 @@ def import_pipelines(output: Path, server: jenkins.Jenkins) -> None:
         for future in as_completed(futures):
             future.result()
 
-
 def main() -> None:
 
     os.environ["REQUESTS_CA_BUNDLE"] = CA_BUNDLE
 
-    src           = connect_to_jenkins(url=JENKINS_SOURCE_URL, username=JENKINS_SOURCE_USERNAME, password=JENKINS_SOURCE_PASSWORD)
-    dst           = connect_to_jenkins(url=JENKINS_DESTINATION_URL, username=JENKINS_DESTINATION_USERNAME, password=JENKINS_DESTINATION_PASSWORD)
-    pipelines     = load_pipelines()
-    jobs          = src.get_all_jobs()
+    parser = argparse.ArgumentParser(description="Save BPER Jenkins pipelines to a CSV file")
+    parser.add_argument("--jenkins-src",   type=str, help="URL to Jenkins source server", default="http://172.16.63.239/jenkins")
+    parser.add_argument("--username-src",  type=str, help="Username to Jenkins source server", default="admin")
+    parser.add_argument("--password-src",  type=str, help="Password to Jenkins source server", default="admin")
+    parser.add_argument("--jenkins-dst",   type=str, help="URL to Jenkins destination server", default="https://jenkins-build.gbbper.priv/")
+    parser.add_argument("--username-dst",  type=str, help="Username to Jenkins destination server", default="admin")
+    parser.add_argument("--password-dst",  type=str, help="Password to Jenkins destination server", default="admin")
+    args = parser.parse_args()
+
+    src       = connect_to_jenkins(url=args.jenkins_src, username=args.username_src, password=args.password_src)
+    dst       = connect_to_jenkins(url=args.jenkins_dst, username=args.username_dst, password=args.password_dst)
+    pipelines = load_pipelines()
+    jobs      = src.get_all_jobs()
 
     with ThreadPoolExecutor(max_workers=MAX_WORKERS) as e:
         futures = [e.submit(process_pipeline, src, job, pipelines) for job in jobs]

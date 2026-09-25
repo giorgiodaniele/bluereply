@@ -1,16 +1,7 @@
 import csv
 import re
-import fnmatch
+import argparse
 
-from pathlib import Path
-
-
-INPUT_FILE           = Path("jenkins_pipelines_20260918_095459.csv")
-OUTPUT_FILE          = Path("jenkins_pipelines_20260918_095459_filtered.csv")
-PATTERNS_FILE        = Path("resources/patterns.txt")
-REDMINE_TICKETS_FILE = Path("resources/redmine_tickets.csv")
-JENKINS_REPOSITORY   = "https://gitlab.gbbper.priv/Devops/pipeline-build.git"
-JENKINS_BRANCH       = "*/new-master"
 VALID_SUFFIXES       = ("-master", "-develop", "-release", "-it", "-lab", "-old", "-chart", "-httpd", "upload-snapshot", "upload-release", "artifact-upload", "upload", "upload-chart")
 VALID_PREFIXES       = ("standalone-", "BATCH")
 JENKINS_FILE_MAPPING = {
@@ -80,12 +71,17 @@ JDKS_MAPPING         = {
 
 def main():
 
-    src_file = f"jenkins_pipelines_20260918_145730.csv"
+    parser = argparse.ArgumentParser(description="Save BPER Jenkins pipelines to a CSV file")
+    parser.add_argument("--input", type=str, help="Input file for the CSV file", default="")
+    args = parser.parse_args()
+
+    src_file = args.input
     dst_file = f"{src_file.replace(".csv", "")}_filtered.csv"
 
     records = []
     records_with_application_code = []
 
+    # Load patterns by which filtering pipelines according to their fullname
     with open("resources/patterns.txt", "r", encoding="utf-8") as file:
         ignored_patterns = [ re.compile(line.strip()) for line in file if line.strip() ]
 
@@ -95,19 +91,19 @@ def main():
             fullname = record["fullname"]
             for pattern in ignored_patterns:
                 if pattern.match(fullname):
-                    print(f"Discarding {fullname} because of pattern {pattern}")
                     break
             records.append(record)
 
+    # Load pipelines with application code
     with open("resources/pipelinesWithApplicationCode.csv", "r", newline="", encoding="utf-8") as file:
         reader = csv.DictReader(file)
         for record in reader:
             records_with_application_code.append(record)
 
+    components_app_code = {}
+
     for record in records:
         fullname = record["fullname"]
-
-        print(f"Processing {fullname} ...")
 
         for valid_prefix in VALID_PREFIXES:
             if not fullname.startswith(valid_prefix):
@@ -116,16 +112,18 @@ def main():
             if not fullname.endswith(valid_suffix):
                 continue
 
-        record["gitlabBranch"]          = "*/new-master"
-        record["jenkinsfileName"]       = JENKINS_FILE_MAPPING.get(record["jenkinsfileName"])
-        record["jenkinsfileRepository"] = record["jenkinsfileRepository"].replace("http://172.16.63.237", "https://gitlab.gbbper.priv")
         record["jdkVersion"]            = ";".join(JDKS_MAPPING.get(jdk, "") for jdk in record["jdkVersion"].split(";"))
+        record["jenkinsfileName"]       = JENKINS_FILE_MAPPING.get(record["jenkinsfileName"])
+        record["jenkinsfileRepository"] = "https://gitlab.gbbper.priv/Devops/pipeline-build.git"
+        record["jenkinsfileBranch"]     = "*/new-master"
 
         app_code = ""
         for record_with_app_code in records_with_application_code:
-            if record_with_app_code["fullname"] == record["fullname"]:
-                app_code = record_with_app_code["applicationCode"]
+            if record_with_app_code["jenkinsJobName"] == record["fullname"]:
+                app_code    = record_with_app_code["applicationCode"]
                 break
+
+        components_app_code[f"{record['gitlabGroup']}/{record['gitlabPproject']}"] = app_code
 
         record["applicationCode"] = app_code
 
@@ -134,6 +132,14 @@ def main():
         writer = csv.DictWriter(file, fieldnames=list(records[0].keys()))
         writer.writeheader()
         writer.writerows(records)
+
+    import json
+    with_out_app_code = list(filter(lambda x: x["applicationCode"] == "", records))
+    with_app_code     = list(filter(lambda x: x["applicationCode"] != "", records))
+    print(f"Without app code: {len(with_out_app_code)}")
+    print(f"With app code:    {len(with_app_code)}")
+    with open("components_vs_app_code.json", "w", encoding="utf-8") as file:
+        json.dump(components_app_code, file, indent=4)
 
 
 if __name__ == "__main__":

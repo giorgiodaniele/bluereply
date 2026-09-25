@@ -1,10 +1,8 @@
 import csv
 import logging
-import os
-import re
 import sys
+import argparse
 import xml.etree.ElementTree as ET
-
 import dotenv
 import jenkins
 
@@ -14,23 +12,18 @@ from   datetime           import datetime
 
 dotenv.load_dotenv()
 
-JENKINS_URL      = os.getenv("JENKINS_URL")
-JENKINS_USERNAME = os.getenv("JENKINS_USERNAME")
-JENKINS_PASSWORD = os.getenv("JENKINS_PASSWORD")
-OUTPUT_FOLDER    = Path("output")
 PATTERNS_FILE    = Path("patterns.txt")
 MAX_WORKERS      = 10
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s | %(levelname)-s | %(message)s", datefmt="%Y-%m-%d %H:%M:%S")
 logger = logging.getLogger(__name__)
 
-
-def connect_to_jenkins() -> jenkins.Jenkins:
+def connect_to_jenkins(url: str, username: str, password: str) -> jenkins.Jenkins:
     try:
-        server = jenkins.Jenkins(url=JENKINS_URL, username=JENKINS_USERNAME, password=JENKINS_PASSWORD) 
+        server = jenkins.Jenkins(url=url, username=username, password=password)
         return server
     except Exception as e:
-        logger.error("Can't connect to Jenkins (%s): %s", JENKINS_URL, e)
+        logger.error("Can't connect to Jenkins (%s): %s", url, e)
         sys.exit(1)
 
 def get_xml_text(e: ET.Element | None) -> str | None:
@@ -76,28 +69,17 @@ def process_pipeline(server: jenkins.Jenkins, pipeline: dict) -> dict | None:
     try:
         str = server.get_job_config(name)
         res = inspect_pipeline(str, name)
-        logger.info("Successfully processed: %s", name)
+        logger.info("Successfully processed pipeline [%s]", name)
         return res
     except Exception:
-        logger.exception("Failed to process pipeline: %s", name)
+        logger.exception("Failed at processing pipeline [%s]", name)
         return None
 
-def load_rgx():
-    patterns = []
-    with open(PATTERNS_FILE, "r", encoding="utf-8") as f:
-        for line in f:
-            line = line.strip()
-            if line and not line.startswith("#"):
-                patterns.append(line)
-    if patterns:
-        return re.compile("|".join(patterns))
-    return None
-
-def save_csv(results: list[dict]) -> None:
-    OUTPUT_FOLDER.mkdir(parents=True, exist_ok=True)
+def save_csv(results: list[dict], output_folder: Path) -> None:
+    output_folder.mkdir(parents=True, exist_ok=True)
 
     timestamp   = datetime.now().strftime("%Y%m%d_%H%M%S")
-    output_file = OUTPUT_FOLDER / f"jenkins_pipelines_{timestamp}.csv"
+    output_file = output_folder / f"jenkins_pipelines_{timestamp}.csv"
 
     fieldnames = [ 
         "fullname", 
@@ -116,13 +98,19 @@ def save_csv(results: list[dict]) -> None:
         writer.writeheader()
         for result in results:
             writer.writerow(result)
-
-
 #
 # MAIN
 #
 def main() -> None:
-    server    = connect_to_jenkins()
+
+    parser = argparse.ArgumentParser(description="Save BPER Jenkins pipelines to a CSV file")
+    parser.add_argument("--jenkins-server", type=str, help="URL to Jenkins server",    default="http://172.16.63.239/jenkins")
+    parser.add_argument("--username", type=str, help="Username to Jenkins server",     default="admin")
+    parser.add_argument("--password", type=str, help="Password to Jenkins server",     default="admin")
+    parser.add_argument("--output",   type=str, help="Output folder for the CSV file", default="output")
+    args = parser.parse_args()
+
+    server    = connect_to_jenkins(url=args.jenkins_server, username=args.username, password=args.password)
     jobs      = server.get_all_jobs()
     pipelines = [ job for job in jobs if job.get("_class") == "org.jenkinsci.plugins.workflow.job.WorkflowJob" ]
     results   = []
@@ -133,8 +121,7 @@ def main() -> None:
             res = future.result()
             if res:
                 results.append(res)
-    save_csv(results)
-
+    save_csv(results, output_folder=Path(args.output))
 
 if __name__ == "__main__":
     main()
